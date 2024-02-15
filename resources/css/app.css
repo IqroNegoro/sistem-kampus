@@ -1,0 +1,33 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+    * {
+        @apply scroll-smooth;
+    }
+    
+    ::-webkit-scrollbar, ::-webkit-scrollbar-track, ::-webkit-scrollbar-track-piece {
+        @apply bg-transparent w-1 h-1;
+    }
+
+    ::-webkit-scrollbar-thumb {
+        @apply bg-white;
+    }
+
+    i {
+        @apply text-xl
+    }
+
+    input, textarea, select {
+        @apply p-2
+    }
+
+    ::-webkit-inner-spin-button, ::-webkit-outer-spin-button {
+        @apply hidden;
+    }
+
+    table {
+        @apply table-fixed;
+    }
+}
