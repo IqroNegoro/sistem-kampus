@@ -4,7 +4,7 @@
         <div class="w-full px-6 py-4 h-full md:max-h-[85%] overflow-y-auto bg-white rounded-t-lg dark:bg-gray-800 sm:rounded-lg sm:m-4 sm:max-w-xl"
             id="modal">
             <header class="flex justify-end">
-                <button @click.self="$emit('closeModalAdd')"
+                <button @click="$emit('closeModalAdd')"
                     class="inline-flex items-center justify-center w-6 h-6 text-gray-400 transition-colors duration-150 rounded dark:hover:text-gray-200 hover: hover:text-gray-700"
                     aria-label="close">
                     <svg class="w-4 h-4" fill="currentColor" viewBox="0 0 20 20" role="img" aria-hidden="true">

@@ -2,19 +2,20 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Building;
+use App\Models\AcademicYear;
 use Illuminate\Http\Request;
 
-class BuildingController extends Controller
+class AcademicYearController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $buildings = Building::orderBy("created_at")->paginate(10);
-        return inertia("building/index", [
-            "buildings" => $buildings
+        $years = AcademicYear::orderBy("created_at")->paginate(10);
+
+        return inertia("year/index", [
+            "years" => $years
         ]);
     }
 
@@ -32,16 +33,18 @@ class BuildingController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            "name" => "required"
+            "year" => "required|numeric",
+            "semester" => "required|numeric",
+            "status" => "nullable|boolean"
         ]);
 
-        Building::create($data);
+        AcademicYear::create($data);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Building $building)
+    public function show(AcademicYear $academicYear)
     {
         //
     }
@@ -49,31 +52,30 @@ class BuildingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Building $building)
+    public function edit(AcademicYear $academicYear)
     {
+        //
     }
-    
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Building $building)
+    public function update(Request $request, AcademicYear $academicYear)
     {
         $data = $request->validate([
-            "name" => "required"
+            "year" => "required|numeric",
+            "semester" => "required|numeric",
+            "status" => "nullable|boolean"
         ]);
-    
-        $building->update($data);
+
+        $academicYear->update($data);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Building $building)
+    public function destroy(AcademicYear $academicYear)
     {
-        $building->delete();
-    }
-
-    public function get() {
-        return Building::all();
+        $academicYear->delete();
     }
 }

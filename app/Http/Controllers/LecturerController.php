@@ -108,4 +108,8 @@ class LecturerController extends Controller
     {
         $lecturer->delete();
     }
+
+    public function get() {
+        return Lecturer::all(["id", "name"]);
+    }
 }

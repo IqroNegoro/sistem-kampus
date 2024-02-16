@@ -5,7 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Faculty;
 use Illuminate\Http\Request;
 
-class FacultiesController extends Controller
+class FacultyController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -75,6 +75,6 @@ class FacultiesController extends Controller
     }
 
     public function get() {
-        return Faculty::all();
+        return Faculty::all(["id", "name"]);
     }
 }

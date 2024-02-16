@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Building;
+use App\Models\Room;
 use Illuminate\Http\Request;
 
-class BuildingController extends Controller
+class RoomController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $buildings = Building::orderBy("created_at")->paginate(10);
-        return inertia("building/index", [
-            "buildings" => $buildings
+        $rooms = Room::with(["building"])->orderBy("created_at")->paginate(10);
+        return inertia("room/index", [
+            "rooms" => $rooms
         ]);
     }
 
@@ -32,16 +32,17 @@ class BuildingController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            "name" => "required"
+            "room" => "required",
+            "building_id" => "required|uuid"
         ]);
 
-        Building::create($data);
+        Room::create($data);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Building $building)
+    public function show(Room $room)
     {
         //
     }
@@ -49,31 +50,29 @@ class BuildingController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Building $building)
+    public function edit(Room $room)
     {
+        //
     }
-    
+
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Building $building)
+    public function update(Request $request, Room $room)
     {
         $data = $request->validate([
-            "name" => "required"
+            "room" => "required",
+            "building_id" => "required|uuid"
         ]);
-    
-        $building->update($data);
+
+        $room->update($data);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Building $building)
+    public function destroy(Room $room)
     {
-        $building->delete();
-    }
-
-    public function get() {
-        return Building::all();
+        $room->delete();
     }
 }

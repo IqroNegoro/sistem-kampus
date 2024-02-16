@@ -15,10 +15,10 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('study_code');
             $table->string('name');
-            $table->string('semester');
+            $table->integer('semester');
             
-            $table->uuid("faculty_id")->nullable()->references("id")->on("lecturers")->onDelete("cascade");
-            $table->uuid("chairman")->nullable()->references("id")->on("lecturers")->onDelete("cascade");
+            $table->uuid("faculty_id")->nullable();
+            $table->uuid("lecturer_id")->nullable()->references("id")->on("lecturers")->onDelete("cascade");
 
             $table->softDeletes();
             $table->timestamps();

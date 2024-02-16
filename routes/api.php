@@ -1,8 +1,10 @@
 <?php
 
+use App\Http\Controllers\BuildingController;
+use App\Http\Controllers\FacultyController;
+use App\Http\Controllers\LecturerController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
-use App\Models\Faculty;
 
 /*
 |--------------------------------------------------------------------------
@@ -19,6 +21,6 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
     return $request->user();
 });
 
-Route::get("/faculties", function() {
-    return Faculty::get();
-});
+Route::get("/faculties", [FacultyController::class, "get"]);
+Route::get("/buildings", [BuildingController::class, "get"]);
+Route::get("/lecturers", [LecturerController::class, "get"]);

@@ -14,18 +14,28 @@
                     </svg>
                 </button>
             </header>
-            <form @submit.prevent="form.post('/faculties', {
+            <form @submit.prevent="form.post('/rooms', {
                 onSuccess: () => $emit('closeModalAdd'),
             })" class="mt-4 mb-6 flex flex-col gap-4">
                 <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
-                    Add New Faculty
+                    Add New Room
                 </p>
                 <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Name</span>
-                    <input v-model="form.name"
-                        class="block w-full mt-1 text-sm border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" :class="{'border-red-500 dark:border-red-500': form.errors.name}"
-                        placeholder="Software Engineer" />
-                        <p class="text-red-500 font-medium" v-if="form.errors.name"> {{ form.errors.name }} </p>
+                    <input v-model="form.room"
+                        class="block w-full mt-1 text-sm border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" :class="{'border-red-500 dark:border-red-500': form.errors.room}"
+                        placeholder="Room 01" />
+                        <p class="text-red-500 font-medium" v-if="form.errors.room"> {{ form.errors.room }} </p>
+                </label>
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Building</span>
+                    <select v-model="form.building_id"
+                        class="block w-full mt-1 text-sm dark border text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" :class="{'border-red-500 dark:border-red-500': form.errors.building_id}">
+                        <option value="">Select</option>
+                        <option v-for="building in buildings" :key="building.id" :value="building.id"> {{ building.name }}
+                        </option>
+                    </select>
+                    <p class="text-red-500 font-medium" v-if="form.errors.building_id"> {{ form.errors.building_id }} </p>
                 </label>
             <footer
                 class="flex flex-col items-center justify-end px-6 py-3 -mx-6 -mb-4 space-y-4 sm:space-y-0 sm:space-x-6 sm:flex-row bg-gray-50 dark:bg-gray-800">
@@ -44,11 +54,20 @@
     </div>
 </template>
 <script setup>
+import axios from "axios";
 import { useForm } from "@inertiajs/vue3";
+import { ref, onMounted } from "vue";
 
 defineEmits(["closeModalAdd"]);
 
 const form = useForm({
-    name: "",
+    room: "",
+    building_id: "",
+});
+
+const buildings = ref([]);
+
+onMounted(async () => {
+    buildings.value = await axios.get("/api/buildings").then(res => res.data);
 });
 </script>

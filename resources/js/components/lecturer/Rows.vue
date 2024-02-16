@@ -3,7 +3,7 @@
         <td class="px-4 py-3">
             <div class="flex items-center text-sm">
                 <div class="relative hidden w-16 h-16 mr-3 rounded-full md:block">
-                    <img class="object-cover w-full h-full rounded-full" :src="lecturer.photo"
+                    <img class="object-cover aspect-square object-center w-full h-full rounded-full" :src="lecturer.photo"
                         :alt="lecturer.name" loading="lazy" />
                     <div class="absolute inset-0 rounded-full shadow-inner" aria-hidden="true"></div>
                 </div>

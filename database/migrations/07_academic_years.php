@@ -13,8 +13,8 @@ return new class extends Migration
     {
         Schema::create('academic_years', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('year');
-            $table->string('semester');
+            $table->integer('year');
+            $table->integer('semester');
             $table->boolean('status')->default(false);
             
             $table->softDeletes();
