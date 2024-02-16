@@ -155,6 +155,7 @@ const handleUpdate = () => {
         },
         onError: err => {
             form.setError(err);
+            form.processing = false;
         }
     });
 }

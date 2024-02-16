@@ -2,20 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\AcademicYear;
+use App\Models\Course;
 use Illuminate\Http\Request;
 
-class AcademicYearController extends Controller
+class CourseController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $years = AcademicYear::orderBy("created_at")->paginate(10);
-
-        return inertia("year/index", [
-            "years" => $years
+        $courses = Course::with("study")->orderBy("created_at")->paginate(10);
+        return inertia("course/index", [
+            "courses" => $courses
         ]);
     }
 
@@ -33,18 +32,20 @@ class AcademicYearController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            "year" => "required|numeric",
+            "name" => "required|string",
+            "code" => "required|string|unique:courses",
+            "sks" => "required|numeric",
             "semester" => "required|numeric",
-            "status" => "nullable|boolean"
+            "study_id" => "required|exists:studies,id"
         ]);
 
-        AcademicYear::create($data);
+        Course::create($data);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(AcademicYear $academicYear)
+    public function show(Course $course)
     {
         //
     }
@@ -52,7 +53,7 @@ class AcademicYearController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(AcademicYear $academicYear)
+    public function edit(Course $course)
     {
         //
     }
@@ -60,26 +61,28 @@ class AcademicYearController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, AcademicYear $academicYear)
+    public function update(Request $request, Course $course)
     {
         $data = $request->validate([
-            "year" => "required|numeric",
+            "name" => "required|string",
+            "code" => "required|string|unique:courses",
+            "sks" => "required|numeric",
             "semester" => "required|numeric",
-            "status" => "nullable|boolean"
+            "study_id" => "required|exists:studies,id"
         ]);
 
-        $academicYear->update($data);
+        $course->update($data);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(AcademicYear $academicYear)
+    public function destroy(Course $course)
     {
-        $academicYear->delete();
+        $course->delete();
     }
-    
+
     public function get() {
-        return AcademicYear::all(["id", "year"]);
+        return Course::all(["id", "name"]);
     }
 }

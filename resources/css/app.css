@@ -28,6 +28,6 @@
     }
 
     table {
-        @apply table-fixed;
+        /* @apply table-fixed; */
     }
 }

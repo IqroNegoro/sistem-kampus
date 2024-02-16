@@ -17,7 +17,7 @@ return new class extends Migration
             $table->integer('generation');
             $table->integer('total')->nullable()->default(0);
 
-            $table->uuid('studies_id')->nullable()->references("id")->on("studies")->onDelete("cascade");
+            $table->uuid('study_id')->nullable()->references("id")->on("studies")->onDelete("cascade");
             $table->uuid('lecturer_id')->nullable()->references("id")->on("lecturers")->onDelete("cascade");
             
             $table->softDeletes();

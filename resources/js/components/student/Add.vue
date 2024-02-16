@@ -14,11 +14,11 @@
                     </svg>
                 </button>
             </header>
-            <form @submit.prevent="form.post('/lecturers', {
+            <form @submit.prevent="form.post('/students', {
                 onSuccess: () => $emit('closeModalAdd'),
             })" class="mt-4 mb-6 flex flex-col gap-4">
                 <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
-                    Add New Lecturer
+                    Add New Student
                 </p>
                 <label class="block text-sm">
                     <img v-if="form.photo" :src="render(form.photo)" alt="" class="mx-auto w-32 h-32 rounded-full object-center object-cover">
@@ -29,11 +29,11 @@
                         <p class="text-red-500 font-medium text-center" v-if="form.errors.photo"> {{ form.errors.photo }} </p>
                 </label>
                 <label class="block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">NIDN</span>
-                    <input v-model="form.nidn"
-                        class="block w-full mt-1 text-sm border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" :class="{'border-red-500 dark:border-red-500': form.errors.nidn}"
+                    <span class="text-gray-700 dark:text-gray-400">NIM</span>
+                    <input v-model="form.nim"
+                        class="block w-full mt-1 text-sm border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" :class="{'border-red-500 dark:border-red-500': form.errors.nim}"
                         type="number" placeholder="123456789" />
-                        <p class="text-red-500 font-medium" v-if="form.errors.nidn"> {{ form.errors.nidn }} </p>
+                        <p class="text-red-500 font-medium" v-if="form.errors.nim"> {{ form.errors.nim }} </p>
                 </label>
                 <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Name</span>
@@ -82,14 +82,24 @@
                         <p class="text-red-500 font-medium" v-if="form.errors.address"> {{ form.errors.address }} </p>
                 </label>
                 <label class="block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">Faculty</span>
-                    <select v-model="form.faculty_id"
-                        class="block w-full mt-1 text-sm dark border text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" :class="{'border-red-500 dark:border-red-500': form.errors.faculty_id}">
+                    <span class="text-gray-700 dark:text-gray-400">Program Study</span>
+                    <select v-model="form.study_id"
+                        class="block w-full mt-1 text-sm dark border text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" :class="{'border-red-500 dark:border-red-500': form.errors.study_id}">
                         <option value="">Select</option>
-                        <option v-for="faculty in faculties" :key="faculty.id" :value="faculty.id"> {{ faculty.name }}
+                        <option v-for="study in studies" :key="study.id" :value="study.id"> {{ study.name }}
                         </option>
                     </select>
-                    <p class="text-red-500 font-medium" v-if="form.errors.faculty_id"> {{ form.errors.faculty_id }} </p>
+                    <p class="text-red-500 font-medium" v-if="form.errors.study_id"> {{ form.errors.study_id }} </p>
+                </label>
+                <label class="block text-sm">
+                    <span class="text-gray-700 dark:text-gray-400">Class</span>
+                    <select v-model="form.class_id"
+                        class="block w-full mt-1 text-sm dark border text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" :class="{'border-red-500 dark:border-red-500': form.errors.study_id}">
+                        <option value="">Select</option>
+                        <option v-for="clas in classes" :key="clas.id" :value="clas.id"> {{ clas.name }}
+                        </option>
+                    </select>
+                    <p class="text-red-500 font-medium" v-if="form.errors.class_id"> {{ form.errors.class_id }} </p>
                 </label>
                 <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Phone</span>
@@ -130,12 +140,13 @@ defineEmits(["closeModalAdd"]);
 
 const form = useForm({
     photo: "",
-    nidn: "",
+    nim: "",
     name: "",
     birth_place: "",
     birth: "",
     address: "",
-    faculty_id: "",
+    study_id: "",
+    class_id: "",
     phone: "",
     email: "",
     gender: "male",
@@ -154,9 +165,13 @@ const handleFile = ({target}) => {
     form.photo = file;
 }
 
-const faculties = ref([]) as Ref;
+const studies = ref([]) as Ref;
+const classes = ref([]) as Ref;
 
 onMounted(async () => {
-    faculties.value = await axios.get("/api/faculties").then(res => res.data);
+    [studies.value, classes.value] = await Promise.all([
+        axios.get("/api/studies").then(res => res.data),
+        axios.get("/api/classes").then(res => res.data)
+    ]) 
 });
 </script>

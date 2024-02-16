@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Study;
+use App\Models\Classes;
 use Illuminate\Http\Request;
 
-class StudyController extends Controller
+class ClassesController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $studies = Study::with(["faculty", "lecturer"])->orderBy("created_at")->paginate(10);
-        return inertia("study/index", [
-            "studies" => $studies
+        $class = Classes::with(["study", "lecturer"])->orderBy("created_at")->paginate(10);
+        return inertia("classes/index", [
+            "classes" => $class
         ]);
     }
 
@@ -32,20 +32,20 @@ class StudyController extends Controller
     public function store(Request $request)
     {
         $data = $request->validate([
-            "study_code" => "required|string|unique:studies",
             "name" => "required|string",
-            "semester" => "required|numeric",
-            "faculty_id" => "required|exists:faculties,id",
+            "generation" => "required|numeric",
+            "total" => "numeric",
+            "study_id" => "required|exists:studies,id",
             "lecturer_id" => "required|exists:lecturers,id"
         ]);
 
-        Study::create($data);
+        Classes::create($data);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Study $study)
+    public function show(Classes $classes)
     {
         //
     }
@@ -53,7 +53,7 @@ class StudyController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Study $study)
+    public function edit(Classes $classes)
     {
         //
     }
@@ -61,28 +61,28 @@ class StudyController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Study $study)
+    public function update(Request $request, Classes $classes)
     {
         $data = $request->validate([
-            "study_code" => "required|string|unique:studies",
             "name" => "required|string",
-            "semester" => "required|numeric",
-            "faculty_id" => "required|exists:faculties,id",
+            "generation" => "required|numeric",
+            "total" => "numeric",
+            "study_id" => "required|exists:studies,id",
             "lecturer_id" => "required|exists:lecturers,id"
         ]);
 
-        $study->update($data);
+        $classes->update($data);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Study $study)
+    public function destroy(Classes $classes)
     {
-        $study->delete();
+        $classes->delete();
     }
 
     public function get() {
-        return Study::all(["id", "name"]);
+        return Classes::all(["id", "name"]);
     }
 }

@@ -2,14 +2,16 @@
 
 use App\Http\Controllers\AcademicYearController;
 use App\Http\Controllers\BuildingController;
-use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\ClassesController;
+use App\Http\Controllers\CourseController;
 use App\Http\Controllers\IndexController;
 use App\Http\Controllers\FacultyController;
 use App\Http\Controllers\LecturerController;
 use App\Http\Controllers\RoomController;
+use App\Http\Controllers\ScheduleController;
+use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudyController;
-use App\Models\AcademicYear;
-use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Route;
 
 /*
 |--------------------------------------------------------------------------
@@ -30,4 +32,8 @@ Route::middleware([])->group(function() {
     Route::resource("/rooms", RoomController::class);
     Route::resource("/years", AcademicYearController::class)->parameter("years", "academic_year");
     Route::resource("/studies", StudyController::class);
+    Route::resource("/courses", CourseController::class);
+    Route::resource("/students", StudentController::class);
+    Route::resource("/classes", ClassesController::class)->parameter("classes", "classes");
+    Route::resource("/schedules", ScheduleController::class);
 });

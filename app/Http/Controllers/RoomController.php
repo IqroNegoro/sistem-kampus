@@ -75,4 +75,8 @@ class RoomController extends Controller
     {
         $room->delete();
     }
+
+    public function get() {
+        return Room::all(["id", "room"]);
+    }
 }

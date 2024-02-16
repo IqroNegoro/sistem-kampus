@@ -74,6 +74,6 @@ class BuildingController extends Controller
     }
 
     public function get() {
-        return Building::all();
+        return Building::all(["id", "name"]);
     }
 }

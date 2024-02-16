@@ -2,19 +2,19 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Lecturer;
+use App\Models\Student;
 use Illuminate\Http\Request;
 
-class LecturerController extends Controller
+class StudentController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $lecturers = Lecturer::with(["faculty"])->orderBy("created_at")->paginate(10);
-        return inertia("lecturer/index", [
-            "lecturers" => $lecturers
+        $students = Student::with(["study", "class"])->orderBy("created_at")->paginate(10);
+        return inertia("student/index", [
+            "students" => $students
         ]);
     }
 
@@ -33,11 +33,12 @@ class LecturerController extends Controller
     {
         $data = $request->validate([
             "name" => "required|string|max:255",
-            "nidn" => "required|numeric",
+            "nim" => "required|numeric",
             "birth_place" => "required|string",
             "birth" => "required|date",
             "address" => "required|string",
-            "faculty_id" => "required|string|exists:faculties,id",
+            "study_id" => "required|string|exists:studies,id",
+            "class_id" => "required|string|exists:class,id",
             "phone" => "required|numeric",
             "email" => "required|string|email:dns",
             "gender" => "required|string",
@@ -49,14 +50,14 @@ class LecturerController extends Controller
 
             $data["photo"] = $file;
         }
-        
-        Lecturer::create($data);
+
+        Student::create($data);
     }
 
     /**
      * Display the specified resource.
      */
-    public function show(Lecturer $lecturer)
+    public function show(Student $student)
     {
         //
     }
@@ -64,7 +65,7 @@ class LecturerController extends Controller
     /**
      * Show the form for editing the specified resource.
      */
-    public function edit(Lecturer $lecturer)
+    public function edit(Student $student)
     {
         //
     }
@@ -72,15 +73,16 @@ class LecturerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Lecturer $lecturer)
+    public function update(Request $request, Student $student)
     {
         $validate = [
             "name" => "required|string|max:255",
-            "nidn" => "required|numeric",
+            "nim" => "required|numeric",
             "birth_place" => "required|string",
             "birth" => "required|date",
             "address" => "required|string",
-            "faculty_id" => "required|string|exists:faculties,id",
+            "study_id" => "required|string|exists:studies,id",
+            "class_id" => "required|string|exists:class,id",
             "phone" => "required|numeric",
             "email" => "required|string|email:dns",
             "gender" => "required|string",
@@ -98,18 +100,14 @@ class LecturerController extends Controller
             $data["photo"] = $file;
         }
 
-        $lecturer->update($data);
+        $student->update($data);
     }
 
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Lecturer $lecturer)
+    public function destroy(Student $student)
     {
-        $lecturer->delete();
-    }
-
-    public function get() {
-        return Lecturer::all(["id", "name"]);
+        $student->delete();
     }
 }

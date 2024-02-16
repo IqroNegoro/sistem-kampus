@@ -16,7 +16,7 @@ return new class extends Migration
             $table->date('day');
             $table->time('time');
             
-            $table->uuid('studies_id')->nullable()->references("id")->on("studies")->onDelete("cascade");
+            $table->uuid('study_id')->nullable()->references("id")->on("studies")->onDelete("cascade");
             $table->uuid('year_id')->nullable()->references("id")->on("academic_years")->onDelete("cascade");
             $table->uuid('class_id')->nullable()->references("id")->on("class")->onDelete("cascade");
             $table->uuid('course_id')->nullable()->references("id")->on("courses")->onDelete("cascade");
