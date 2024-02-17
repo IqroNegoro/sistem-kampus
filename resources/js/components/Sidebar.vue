@@ -17,71 +17,71 @@
           </ul>
           <ul>
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/lecturers'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/lecturers" :class="{'dark:text-gray-200': $page.url == '/lecturers'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('lecturers.*')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('lecturers.index')" :class="{'dark:text-gray-200': route().current('lecturers.*')}">
                 <i class='bx bxs-user-badge'></i>
                 <span class="ml-4">Lecturers</span>
               </Link>
             </li>
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/students'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/students" :class="{'dark:text-gray-200': $page.url == '/students'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('students.*')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('students.index')" :class="{'dark:text-gray-200': route().current('students.*')}">
                 <i class='bx bxs-user-detail'></i>
                 <span class="ml-4">Students</span>
               </Link>
             </li>
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/faculties'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/faculties" :class="{'dark:text-gray-200': $page.url == '/faculties'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('faculties.*')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('faculties.index')" :class="{'dark:text-gray-200': route().current('faculties.*')}">
                 <i class='bx bxs-institution'></i>
                 <span class="ml-4">Faculties</span>
               </Link>
             </li>
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/buildings'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/buildings" :class="{'dark:text-gray-200': $page.url == '/buildings'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('buildings.*')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('buildings.index')" :class="{'dark:text-gray-200': route().current('buildings.*')}">
                 <i class="bx bxs-buildings"></i>
                 <span class="ml-4">Buildings</span>
               </Link>
             </li>
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/rooms'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/rooms" :class="{'dark:text-gray-200': $page.url == '/rooms'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('rooms.*')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('rooms.index')" :class="{'dark:text-gray-200': route().current('rooms.*')}">
                 <i class='bx bxs-building' ></i>
                 <span class="ml-4">Rooms</span>
               </Link>
             </li>
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/class'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/classes" :class="{'dark:text-gray-200': $page.url == '/class'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('classes.*')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('classes.index')" :class="{'dark:text-gray-200': route().current('classes.*')}">
                 <i class="bx bxs-group"></i>
                 <span class="ml-4">Class</span>
               </Link>
             </li>
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/courses'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/courses" :class="{'dark:text-gray-200': $page.url == '/courses'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('courses.*')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('courses.index')" :class="{'dark:text-gray-200': route().current('courses.*')}">
                 <i class='bx bx-task'></i>
                 <span class="ml-4">Courses</span>
               </Link>
             </li>
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/schedules'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/schedules" :class="{'dark:text-gray-200': $page.url == '/schedules'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('schedules.*')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('schedules.index')" :class="{'dark:text-gray-200': route().current('schedules.*')}">
                 <i class='bx bxs-calendar-alt'></i>
                 <span class="ml-4">Schedules</span>
               </Link>
             </li>
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/years'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/years" :class="{'dark:text-gray-200': $page.url == '/years'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('years.*')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('years.index')" :class="{'dark:text-gray-200': route().current('years.*')}">
                 <i class='bx bx-calendar'></i>
                 <span class="ml-4">Academic Years</span>
               </Link>
             </li>
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/studies'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/studies" :class="{'dark:text-gray-200': $page.url == '/studies'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('studies.*')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('studies.index')" :class="{'dark:text-gray-200': route().current('studies.*')}">
                 <i class='bx bx-list-ul'></i>
                 <span class="ml-4">Studies</span>
               </Link>

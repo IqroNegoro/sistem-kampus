@@ -14,7 +14,7 @@
                     </svg>
                 </button>
             </header>
-            <form @submit.prevent="form.post('/buildings', {
+            <form @submit.prevent="form.post(route('buildings.store'), {
                 onSuccess: () => $emit('closeModalAdd'),
             })" class="mt-4 mb-6 flex flex-col gap-4">
                 <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">

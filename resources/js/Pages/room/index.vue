@@ -8,6 +8,7 @@
         </div>
         <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
+                <Header />
                 <table class="w-full whitespace-no-wrap">
                     <thead>
                         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
@@ -32,6 +33,7 @@ import Rows from "../../components/room/Rows.vue";
 import Add from "../../components/room/Add.vue";
 import Edit from "../../components/room/Edit.vue";
 import Paginator from "../../components/Paginator.vue";
+import Header from "../../components/Header.vue";
 import { ref } from "vue";
 
 const props = defineProps(["rooms"]);

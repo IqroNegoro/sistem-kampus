@@ -12,7 +12,7 @@ class LecturerController extends Controller
      */
     public function index()
     {
-        $lecturers = Lecturer::with(["faculty"])->orderBy("created_at")->paginate(10);
+        $lecturers = Lecturer::search()->with(["faculty"])->orderBy("created_at")->paginate(request("rows") ?? 10);
         return inertia("lecturer/index", [
             "lecturers" => $lecturers
         ]);

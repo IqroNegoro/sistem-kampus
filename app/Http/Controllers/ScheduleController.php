@@ -12,7 +12,7 @@ class ScheduleController extends Controller
      */
     public function index()
     {
-        $schedules = Schedule::with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(10);
+        $schedules = Schedule::search()->with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(10);
         return inertia("schedule/index", [
             "schedules" => $schedules
         ]);

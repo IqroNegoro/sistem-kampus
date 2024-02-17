@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Model;
@@ -16,10 +17,20 @@ class Lecturer extends Model
     protected $guarded = ["id"];
 
     public function faculty() : BelongsTo {
-        return $this->belongsTo(Faculty::class, "faculty_id", "id");
+        return $this->belongsTo(Faculty::class);
     }
 
     public function courses() : HasMany {
         return $this->hasMany(Course::class);
+    }
+
+    public function scopeSearch(Builder $query) : void {
+        error_log(request("search"));
+        if (request("search")) {
+            $search = request("search");
+            $query->where("name", "LIKE", "%$search%")->orWhere("nidn", "LIKE", "%$search%")->orWhere("gender", "LIKE", "%$search%")->orWhereHas("faculty", function($faculty) use ($search) {
+                $faculty->where("name", "LIKE", "%$search%");
+            });
+        }
     }
 }

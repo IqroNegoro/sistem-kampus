@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -36,5 +37,21 @@ class Schedule extends Model
 
     public function room() : BelongsTo {
         return $this->belongsTo(Room::class);
+    }
+
+    public function scopeSearch(Builder $query) : void {
+        if (request("search")) {
+            $search = request("search");
+            // $query->where("day", )
+            $query->orWhereHas("course", function($course) use ($search) {
+                $course->where("name", "LIKE", "%$search%")->orWhere("code", "LIKE", "%$search%");
+            })->orWhereHas("lecturer", function($lecturer) use ($search) {
+                $lecturer->where("name", "LIKE", "%$search%");
+            })->orWhereHas("room", function($room) use ($search) {
+                $room->where("room", "LIKE", "%$search%")->orWhereHas("building", function($building) use ($search) {
+                    $building->where("name", "LIKE", "%$search%");
+                });
+            });
+        }
     }
 }

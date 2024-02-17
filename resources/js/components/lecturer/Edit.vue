@@ -143,7 +143,7 @@ const form = useForm({
 });
 
 const handleUpdate = () => {
-    router.post(`/lecturers/${lecturer.id}`, {
+    router.post(route("lecturers.update", lecturer.id), {
         _method: "put",
         ...form,
     }, {
@@ -174,6 +174,6 @@ const handleFile = ({target}) => {
 const faculties = ref([]);
 
 onMounted(async () => {
-    faculties.value = await axios.get("/api/faculties").then(res => res.data);
+    faculties.value = await axios.get(route('faculties.get')).then(res => res.data);
 });
 </script>

@@ -12,8 +12,7 @@ class AcademicYearController extends Controller
      */
     public function index()
     {
-        $years = AcademicYear::orderBy("created_at")->paginate(10);
-
+        $years = AcademicYear::search()->orderBy("created_at")->paginate(request("rows") ?? 10);
         return inertia("year/index", [
             "years" => $years
         ]);

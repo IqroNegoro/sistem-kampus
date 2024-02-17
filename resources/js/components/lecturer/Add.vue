@@ -14,7 +14,7 @@
                     </svg>
                 </button>
             </header>
-            <form @submit.prevent="form.post('/lecturers', {
+            <form @submit.prevent="form.post(route('lecturers.store'), {
                 onSuccess: () => $emit('closeModalAdd'),
             })" class="mt-4 mb-6 flex flex-col gap-4">
                 <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
@@ -157,6 +157,6 @@ const handleFile = ({target}) => {
 const faculties = ref([]) as Ref;
 
 onMounted(async () => {
-    faculties.value = await axios.get("/api/faculties").then(res => res.data);
+    faculties.value = await axios.get(route("faculties.get")).then(res => res.data);
 });
 </script>

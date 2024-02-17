@@ -12,7 +12,7 @@ class CourseController extends Controller
      */
     public function index()
     {
-        $courses = Course::with("study")->orderBy("created_at")->paginate(10);
+        $courses = Course::search()->with("study")->orderBy("created_at")->paginate(10);
         return inertia("course/index", [
             "courses" => $courses
         ]);
@@ -65,7 +65,7 @@ class CourseController extends Controller
     {
         $data = $request->validate([
             "name" => "required|string",
-            "code" => "required|string|unique:courses",
+            "code" => "required|string" . ($request->code !== $course->code ? '|unique:courses' : ''),
             "sks" => "required|numeric",
             "semester" => "required|numeric",
             "study_id" => "required|exists:studies,id"

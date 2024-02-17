@@ -12,7 +12,7 @@ class BuildingController extends Controller
      */
     public function index()
     {
-        $buildings = Building::orderBy("created_at")->paginate(10);
+        $buildings = Building::search()->orderBy("created_at")->paginate(request("rows") ?? 10);
         return inertia("building/index", [
             "buildings" => $buildings
         ]);

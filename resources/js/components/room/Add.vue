@@ -14,7 +14,7 @@
                     </svg>
                 </button>
             </header>
-            <form @submit.prevent="form.post('/rooms', {
+            <form @submit.prevent="form.post(route('rooms.store'), {
                 onSuccess: () => $emit('closeModalAdd'),
             })" class="mt-4 mb-6 flex flex-col gap-4">
                 <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
@@ -68,6 +68,6 @@ const form = useForm({
 const buildings = ref([]);
 
 onMounted(async () => {
-    buildings.value = await axios.get("/api/buildings").then(res => res.data);
+    buildings.value = await axios.get(route('buildings.get')).then(res => res.data);
 });
 </script>

@@ -154,7 +154,7 @@ const form = useForm({
 });
 
 const handleUpdate = () => {
-    router.post(`/students/${student.id}`, {
+    router.post(route("students.update", student.id), {
         _method: "put",
         ...form,
     }, {
@@ -187,8 +187,8 @@ const classes = ref([]);
 
 onMounted(async () => {
     [studies.value, classes.value] = await Promise.all([
-        axios.get("/api/studies").then(res => res.data),
-        axios.get("/api/classes").then(res => res.data)
+        axios.get(route("studies.get")).then(res => res.data),
+        axios.get(route("classes.get")).then(res => res.data)
     ]) 
 });
 </script>

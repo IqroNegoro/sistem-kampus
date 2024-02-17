@@ -10,7 +10,7 @@
                     <i class="bx bx-x"></i>
                 </button>
             </header>
-            <form @submit.prevent="form.put(`/buildings/${building.id}`, {
+            <form @submit.prevent="form.put(route('buildings.update'), {
                 onSuccess: () => $emit('closeModalEdit')
             })" class="mt-4 mb-6 flex flex-col gap-4" enctype="multipart/form-data">
                 <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">

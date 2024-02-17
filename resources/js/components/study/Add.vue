@@ -14,7 +14,7 @@
                     </svg>
                 </button>
             </header>
-            <form @submit.prevent="form.post('/studies', {
+            <form @submit.prevent="form.post(route('studies.store'), {
                 onSuccess: () => $emit('closeModalAdd'),
             })" class="mt-4 mb-6 flex flex-col gap-4">
                 <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
@@ -97,8 +97,8 @@ const lecturers = ref([]);
 
 onMounted(async () => {
     [faculties.value, lecturers.value] = await Promise.all([
-        axios.get("/api/faculties").then(res => res.data),
-        axios.get("/api/lecturers").then(res => res.data)
+        axios.get(route("faculties.get")).then(res => res.data),
+        axios.get(route("lecturers.get")).then(res => res.data)
     ]);
 });
 </script>

@@ -14,7 +14,7 @@
                     </svg>
                 </button>
             </header>
-            <form @submit.prevent="form.post('/schedules', {
+            <form @submit.prevent="form.post(route('schedules.store'), {
                 onSuccess: () => $emit('closeModalAdd'),
             })" class="mt-4 mb-6 flex flex-col gap-4">
                 <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
@@ -136,12 +136,12 @@ const rooms = ref([]) as Ref;
 
 onMounted(async () => {
     [studies.value, years.value, classes.value, courses.value, lecturers.value, rooms.value] = await Promise.all([
-        axios.get("/api/studies").then(res => res.data),
-        axios.get("/api/years").then(res => res.data),
-        axios.get("/api/classes").then(res => res.data),
-        axios.get("/api/courses").then(res => res.data),
-        axios.get("/api/lecturers").then(res => res.data),
-        axios.get("/api/rooms").then(res => res.data),
+        axios.get(route("studies.get")).then(res => res.data),
+        axios.get(route("years.get")).then(res => res.data),
+        axios.get(route("classes.get")).then(res => res.data),
+        axios.get(route("courses.get")).then(res => res.data),
+        axios.get(route("lecturers.get")).then(res => res.data),
+        axios.get(route("rooms.get")).then(res => res.data),
     ])
 });
 </script>

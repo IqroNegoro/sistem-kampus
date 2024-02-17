@@ -2,6 +2,7 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
@@ -20,6 +21,17 @@ class Student extends Model
 
     public function class() : BelongsTo {
         return $this->belongsTo(Classes::class);
+    }
+
+    public function scopeSearch(Builder $query) : void {
+        if (request("search")) {
+            $search = request("search");
+            $query->where("name", "LIKE", "%$search%")->orWhere("nim", "LIKE", "%$search%")->orWhere("gender", "LIKE", "%$search%")->orWhereHas("study", function($study) use ($search) {
+                $study->where("name", "LIKE", "%$search%");
+            })->orWhereHas("class", function($class) use ($search) {
+                $class->where("name", "LIKE", "%$search%");
+            });
+        };
     }
 
     protected static function booted() : void {

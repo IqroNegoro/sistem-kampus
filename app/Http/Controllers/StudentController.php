@@ -12,7 +12,7 @@ class StudentController extends Controller
      */
     public function index()
     {
-        $students = Student::with(["study", "class"])->orderBy("created_at")->paginate(10);
+        $students = Student::search()->with(["study", "class"])->orderBy("created_at")->paginate(request("rows") ?? 10);
         return inertia("student/index", [
             "students" => $students
         ]);

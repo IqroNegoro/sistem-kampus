@@ -12,7 +12,7 @@ class StudyController extends Controller
      */
     public function index()
     {
-        $studies = Study::with(["faculty", "lecturer"])->orderBy("created_at")->paginate(10);
+        $studies = Study::search()->with(["faculty", "lecturer"])->orderBy("created_at")->paginate(10);
         return inertia("study/index", [
             "studies" => $studies
         ]);
@@ -64,7 +64,7 @@ class StudyController extends Controller
     public function update(Request $request, Study $study)
     {
         $data = $request->validate([
-            "study_code" => "required|string|unique:studies",
+            "study_code" => "required|string" . ($request->study_code !== $study->study_code ? '|unique:studies' : ''),
             "name" => "required|string",
             "semester" => "required|numeric",
             "faculty_id" => "required|exists:faculties,id",

@@ -21,6 +21,9 @@
         <td class="px-4 py-3 text-xs">
             {{ student.study?.name ?? "" }}
         </td>
+        <td class="px-4 py-3 text-xs">
+            {{ student.class?.name ?? "" }}
+        </td>
         <td class="px-4 py-3 text-sm">
             {{ student.gender }}
         </td>
@@ -31,7 +34,12 @@
                     aria-label="Edit">
                     <i class="bx bx-edit"></i>
                 </button>
-                <button @click="router.delete(`/students/${student.id}`)"
+                <button @click="$emit('infoStudent', student.id)"
+                    class="bg-blue-500 text-white flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 cursor-pointer rounded-lg focus:outline-none focus:shadow-outline-gray"
+                    aria-label="Edit">
+                    <i class="bx bx-info-circle"></i>
+                </button>
+                <button @click="router.delete(route('students.destroy', student.id))"
                     class="bg-red-500 text-white flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 cursor-pointer rounded-lg focus:outline-none focus:shadow-outline-gray"
                     aria-label="Delete">
                     <i class="bx bx-trash"></i>
@@ -43,5 +51,5 @@
 <script setup>
 import { router } from "@inertiajs/vue3";
 defineProps(["student"]);
-defineEmits(["editStudent"]);
+defineEmits(["editStudent", "infoStudent"]);
 </script>

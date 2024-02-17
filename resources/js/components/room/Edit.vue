@@ -10,7 +10,7 @@
                     <i class="bx bx-x"></i>
                 </button>
             </header>
-            <form @submit.prevent="form.put(`/rooms/${room.id}`, {
+            <form @submit.prevent="form.put(route('rooms.update', room.id), {
                 onSuccess: () => $emit('closeModalEdit')
             })" class="mt-4 mb-6 flex flex-col gap-4" enctype="multipart/form-data">
                 <p class="mb-2 text-lg font-semibold text-gray-700 dark:text-gray-300">
@@ -65,6 +65,6 @@ const form = useForm({
 const buildings = ref([]);
 
 onMounted(async () => {
-    buildings.value = await axios.get("/api/buildings").then(res => res.data);
+    buildings.value = await axios.get(route("buildings.get")).then(res => res.data);
 });
 </script>

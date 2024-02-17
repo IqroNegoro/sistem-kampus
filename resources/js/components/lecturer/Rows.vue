@@ -31,7 +31,12 @@
                     aria-label="Edit">
                     <i class="bx bx-edit"></i>
                 </button>
-                <button @click="router.delete(`/lecturers/${lecturer.id}`)"
+                <button @click="$emit('infoLecturer', lecturer.id)"
+                    class="bg-blue-500 text-white flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 cursor-pointer rounded-lg focus:outline-none focus:shadow-outline-gray"
+                    aria-label="Edit">
+                    <i class="bx bx-info-circle"></i>
+                </button>
+                <button @click="router.delete(router('lecturers.destroy', lecturer.id))"
                     class="bg-red-500 text-white flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 cursor-pointer rounded-lg focus:outline-none focus:shadow-outline-gray"
                     aria-label="Delete">
                     <i class="bx bx-trash"></i>
@@ -43,5 +48,5 @@
 <script setup>
 import { router } from "@inertiajs/vue3";
 defineProps(["lecturer"]);
-defineEmits(["editLecturer"]);
+defineEmits(["editLecturer", "infoLecturer"]);
 </script>

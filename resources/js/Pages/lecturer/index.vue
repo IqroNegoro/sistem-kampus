@@ -8,6 +8,7 @@
         </div>
         <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
             <div class="w-full overflow-x-auto">
+                <Header />
                 <table class="w-full whitespace-no-wrap">
                     <thead>
                         <tr
@@ -20,7 +21,7 @@
                         </tr>
                     </thead>
                     <tbody class="bg-white divide-y dark:divide-gray-700 dark:bg-gray-800">
-                        <Rows v-for="lecturer in lecturers.data" :key="lecturer.id" :lecturer="lecturer" @edit-lecturer="id => editLecturer = lecturers.data.find(v => v.id === id)" />
+                        <Rows v-for="lecturer in lecturers.data" :key="lecturer.id" :lecturer="lecturer" @edit-lecturer="id => editLecturer = lecturers.data.find(v => v.id === id)" @info-lecturer="id => infoLecturer = lecturers.data.find(v => v.id === id)" />
                     </tbody>
                 </table>
             </div>
@@ -29,17 +30,20 @@
     </div>
     <Add v-if="showModal" @close-modal-add="showModal = false" />
     <Edit v-if="editLecturer" @close-modal-edit="editLecturer = null" :lecturer="editLecturer" />
+    <Info v-if="infoLecturer" @close-modal-info="infoLecturer = null" :lecturer="infoLecturer" />
 </template>
 <script setup>
 import Rows from "../../components/lecturer/Rows.vue";
 import Add from "../../components/lecturer/Add.vue";
 import Edit from "../../components/lecturer/Edit.vue";
+import Info from "../../components/lecturer/Info.vue";
 import Paginator from "../../components/Paginator.vue";
+import Header from "../../components/Header.vue";
 import { ref } from "vue";
 
 const props = defineProps(["lecturers"]);
 
 const editLecturer = ref(null);
-
+const infoLecturer = ref(null);
 const showModal = ref(false);
 </script>

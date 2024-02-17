@@ -7,6 +7,7 @@
             </button>
         </div>
         <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+            <Header />
             <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
                     <thead>
@@ -27,13 +28,17 @@
     <Edit v-if="editFaculty" @close-modal-edit="editFaculty = null" :faculty="editFaculty" />
 </template>
 <script setup>
+import Header from "../../components/Header.vue";
 import Rows from "../../components/faculty/Rows.vue";
 import Add from "../../components/faculty/Add.vue";
 import Edit from "../../components/faculty/Edit.vue";
 import Paginator from "../../components/Paginator.vue";
 import { ref } from "vue";
+import { router } from "@inertiajs/vue3"
 
 const props = defineProps(["faculties"]);
+
+const search = ref();
 
 const editFaculty = ref(null);
 

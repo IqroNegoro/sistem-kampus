@@ -10,7 +10,7 @@
                     aria-label="Edit">
                     <i class="bx bx-edit"></i>
                 </button>
-                <button @click="router.delete(`/buildings/${building.id}`)"
+                <button @click="router.delete(route('buildings.destroy', building.id))"
                     class="bg-red-500 text-white flex items-center justify-between px-2 py-2 text-sm font-medium leading-5 cursor-pointer rounded-lg focus:outline-none focus:shadow-outline-gray"
                     aria-label="Delete">
                     <i class="bx bx-trash"></i>

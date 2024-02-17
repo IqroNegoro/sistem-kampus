@@ -12,7 +12,7 @@ class FacultyController extends Controller
      */
     public function index()
     {
-        $faculties = Faculty::orderBy("created_at")->paginate(10);
+        $faculties = Faculty::search()->orderBy("created_at")->paginate(request("rows") ?? 10);
         return inertia("faculty/index", [
             "faculties" => $faculties
         ]);

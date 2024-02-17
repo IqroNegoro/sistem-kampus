@@ -7,6 +7,7 @@
             </button>
         </div>
         <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+            <Header />
             <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
                     <thead>
@@ -35,6 +36,7 @@ import Rows from "../../components/study/Rows.vue";
 import Add from "../../components/study/Add.vue";
 import Edit from "../../components/study/Edit.vue";
 import Paginator from "../../components/Paginator.vue";
+import Header from "../../components/Header.vue";
 import { ref } from "vue";
 
 const props = defineProps(["studies"]);

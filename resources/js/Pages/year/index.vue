@@ -7,13 +7,14 @@
             </button>
         </div>
         <div class="w-full mb-8 overflow-hidden rounded-lg shadow-xs">
+            <Header />
             <div class="w-full overflow-x-auto">
                 <table class="w-full whitespace-no-wrap">
                     <thead>
                         <tr class="text-xs font-semibold tracking-wide text-left text-gray-500 uppercase border-b dark:border-gray-700 bg-gray-50 dark:text-gray-400 dark:bg-gray-800">
                             <th class="px-4 py-3">Year</th>
                             <th class="px-4 py-3">Semester</th>
-                            <th class="px-4 py-3">Status</th>
+                            <th class="px-4 py-3 flex items-center gap-2">Status</th>
                             <th class="px-4 py-3">Actions</th>
                         </tr>
                     </thead>
@@ -33,7 +34,9 @@ import Rows from "../../components/year/Rows.vue";
 import Add from "../../components/year/Add.vue";
 import Edit from "../../components/year/Edit.vue";
 import Paginator from "../../components/Paginator.vue";
-import { ref } from "vue";
+import Header from "../../components/Header.vue";
+import { router } from "@inertiajs/vue3";
+import { ref, computed } from "vue";
 
 const props = defineProps(["years"]);
 
