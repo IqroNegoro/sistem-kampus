@@ -1,4 +1,5 @@
 <template>
+  <Head title="Academic Years" />
     <div class="flex flex-col gap-4">
         <div class="flex justify-between">
             <h1 class="text-white font-medium text-3xl">Academic Years</h1>
@@ -35,8 +36,8 @@ import Add from "../../components/year/Add.vue";
 import Edit from "../../components/year/Edit.vue";
 import Paginator from "../../components/Paginator.vue";
 import Header from "../../components/Header.vue";
-import { router } from "@inertiajs/vue3";
 import { ref, computed } from "vue";
+import { Head } from "@inertiajs/vue3";
 
 const props = defineProps(["years"]);
 

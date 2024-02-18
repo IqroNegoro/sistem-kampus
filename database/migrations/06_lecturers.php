@@ -20,7 +20,7 @@ return new class extends Migration
             $table->string('address');
             $table->uuid('faculty_id')->references("id")->on("faculties")->onDelete("cascade");
             $table->string('phone')->nullable();
-            $table->string('email')->nullable();
+            $table->string('email')->nullable()->unique();
             $table->string('gender');
             $table->string('photo')->nullable();
             

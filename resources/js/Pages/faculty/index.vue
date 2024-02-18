@@ -1,4 +1,5 @@
 <template>
+    <Head title="Faculties" />
     <div class="flex flex-col gap-4">
         <div class="flex justify-between">
             <h1 class="text-white font-medium text-3xl">Faculties</h1>
@@ -35,6 +36,7 @@ import Edit from "../../components/faculty/Edit.vue";
 import Paginator from "../../components/Paginator.vue";
 import { ref } from "vue";
 import { router } from "@inertiajs/vue3"
+import { Head } from "@inertiajs/vue3";
 
 const props = defineProps(["faculties"]);
 

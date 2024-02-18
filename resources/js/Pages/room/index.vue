@@ -1,4 +1,5 @@
 <template>
+    <Head title="Rooms" />
     <div class="flex flex-col gap-4">
         <div class="flex justify-between">
             <h1 class="text-white font-medium text-3xl">Rooms</h1>
@@ -35,6 +36,7 @@ import Edit from "../../components/room/Edit.vue";
 import Paginator from "../../components/Paginator.vue";
 import Header from "../../components/Header.vue";
 import { ref } from "vue";
+import { Head } from "@inertiajs/vue3";
 
 const props = defineProps(["rooms"]);
 

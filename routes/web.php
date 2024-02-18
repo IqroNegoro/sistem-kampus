@@ -12,6 +12,8 @@ use App\Http\Controllers\RoomController;
 use App\Http\Controllers\ScheduleController;
 use App\Http\Controllers\StudentController;
 use App\Http\Controllers\StudyController;
+use App\Mail\ActivateAccount;
+use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -32,7 +34,7 @@ Route::middleware(["guest"])->group(function() {
     Route::post("/register", [AuthController::class, "register"])->name("register.post");
 });
 
-Route::middleware(["auth"])->group(function() {
+Route::middleware(["auth:superadmin"])->group(function() {
     Route::get('/', [IndexController::class, "index"]);
     Route::resource('/lecturers', LecturerController::class);
     Route::resource("/faculties", FacultyController::class);

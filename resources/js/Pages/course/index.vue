@@ -1,4 +1,5 @@
 <template>
+    <Head title="Courses" />
     <div class="flex flex-col gap-4">
         <div class="flex justify-between">
             <h1 class="text-white font-medium text-3xl">Courses</h1>
@@ -41,6 +42,7 @@ import Header from "../../components/Header.vue";
 import { ref } from "vue";
 
 const props = defineProps(["courses"]);
+import { Head } from "@inertiajs/vue3";
 
 const editCourse = ref(null);
 
