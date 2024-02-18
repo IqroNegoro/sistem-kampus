@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\AcademicYearController;
+use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BuildingController;
 use App\Http\Controllers\ClassesController;
 use App\Http\Controllers\CourseController;
@@ -24,7 +25,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::middleware([])->group(function() {
+Route::middleware(["guest"])->group(function() {
+    Route::get("/login", [AuthController::class, "loginView"])->name("login.get");
+    Route::post("/login", [AuthController::class, "login"])->name("login.post");
+    Route::get("/register", [AuthController::class, "registerView"])->name("register.get");
+    Route::post("/register", [AuthController::class, "register"])->name("register.post");
+});
+
+Route::middleware(["auth"])->group(function() {
     Route::get('/', [IndexController::class, "index"]);
     Route::resource('/lecturers', LecturerController::class);
     Route::resource("/faculties", FacultyController::class);
@@ -36,4 +44,6 @@ Route::middleware([])->group(function() {
     Route::resource("/students", StudentController::class);
     Route::resource("/classes", ClassesController::class)->parameter("classes", "classes");
     Route::resource("/schedules", ScheduleController::class);
+
+    Route::delete("/logout", [AuthController::class, "logout"])->name('logout');
 });

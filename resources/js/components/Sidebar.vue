@@ -1,10 +1,11 @@
 <template>
     <aside class="z-20 hidden w-64 overflow-y-auto bg-white dark:bg-gray-800 md:block flex-shrink-0">
         <div class="py-4 text-gray-500 dark:text-gray-400">
-            <div class="flex flex-row justify-center items-center">
-                <p class="ml-6 text-lg font-bold text-gray-800 dark:text-gray-200">
+            <div class="flex flex-col justify-center items-center">
+                <p class="text-lg font-bold text-gray-800 dark:text-gray-200">
                   Academic System
                 </p>
+                <p>Welcome {{ $page.props.auth.name }}</p>
             </div>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
@@ -86,6 +87,12 @@
                 <span class="ml-4">Studies</span>
               </Link>
             </li>
+            <li class="relative px-6 py-3">
+              <button class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="router.delete('logout')">
+                <i class='bx bx-log-out'></i>
+                <span class="ml-4">Log Out</span>
+              </button>
+            </li>
           </ul>
           <div class="px-6 my-6">
             <button class="flex items-center justify-between w-full px-4 py-2 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
@@ -97,7 +104,7 @@
       </aside>
 </template>
 <script setup>
-import { Link } from "@inertiajs/vue3"
+import { Link, router } from "@inertiajs/vue3"
 import { ref } from 'vue';
 
 const isSideMenuOpen = ref(false);
