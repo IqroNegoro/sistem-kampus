@@ -3,6 +3,7 @@
 namespace App\Http\Controllers\Student;
 
 use App\Http\Controllers\Controller;
+use App\Models\Schedule;
 use App\Models\Student;
 use Illuminate\Http\Request;
 
@@ -13,15 +14,18 @@ class StudentController extends Controller
      */
     public function index()
     {
-        //
+        return inertia("student/index");
     }
 
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function schedule()
     {
-        //
+        $schedules = Schedule::search()->with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(10);
+        return inertia("student/schedule", [
+            "schedules" => $schedules
+        ]);
     }
 
     /**

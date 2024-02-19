@@ -8,6 +8,7 @@
                         <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
                             Login
                         </h1>
+                        <p class="text-green-500" v-if="$page.props.flash.success"> {{ $page.props.flash.success }} </p>
                         <label class="block text-sm">
                             <span class="text-gray-700 dark:text-gray-400">Email</span>
                             <input v-model="form.email"

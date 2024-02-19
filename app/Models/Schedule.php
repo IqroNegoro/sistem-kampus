@@ -42,8 +42,7 @@ class Schedule extends Model
     public function scopeSearch(Builder $query) : void {
         if (request("search")) {
             $search = request("search");
-            // $query->where("day", )
-            $query->orWhereHas("course", function($course) use ($search) {
+            $query->where("day", "LIKE", "%$search%")->orWhereHas("course", function($course) use ($search) {
                 $course->where("name", "LIKE", "%$search%")->orWhere("code", "LIKE", "%$search%");
             })->orWhereHas("lecturer", function($lecturer) use ($search) {
                 $lecturer->where("name", "LIKE", "%$search%");

@@ -4,7 +4,9 @@ namespace App\Http\Controllers\Lecturer;
 
 use App\Http\Controllers\Controller;
 use App\Models\Lecturer;
+use App\Models\Schedule;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class LecturerController extends Controller
 {
@@ -13,15 +15,21 @@ class LecturerController extends Controller
      */
     public function index()
     {
-        //
+        $schedules = Schedule::where("lecturer_id", Auth::user()->id)->search()->with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(10);
+        return inertia("lecturer/index", [
+            "schedules" => $schedules
+        ]);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function schedules()
     {
-        //
+        $schedules = Schedule::where("lecturer_id", Auth::user()->id)->search()->with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(10);
+        return inertia("lecturer/schedule", [
+            "schedules" => $schedules
+        ]);
     }
 
     /**

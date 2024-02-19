@@ -20,6 +20,7 @@ class AuthController extends Controller
     }
 
     public function login(Request $request) : RedirectResponse {
+        dd($request);
         $credentials = $request->validate([
             "email" => "required|email:dns|string",
             "password" => "required|string"
@@ -36,17 +37,15 @@ class AuthController extends Controller
 
     public function register(Request $request) : RedirectResponse {
         $data = $request->validate([
+            "name" => "required|string",
             "email" => "required|email:dns|string",
             "password" => "required|string",
             "confirm" => "required|same:password"
         ]);
 
-        $data["name"] = "Admin";
-        $data["roles"] = "superadmin";
-
         User::create($data);
 
-        return to_route("login.get");
+        return to_route("login.get")->with("success", "Register success");
     }
 
     public function loginViewStudent() : Response {
@@ -54,17 +53,18 @@ class AuthController extends Controller
     }
 
     public function loginStudent(Request $request) : RedirectResponse {
+        dd($request);
         $credentials = $request->validate([
             "email" => "required|email:dns|string",
             "password" => "required|string"
         ]);
-
+ 
         if (Auth::guard("student")->attempt($credentials)) {
             $request->session()->regenerate();
             
             return to_route("student.index");
         }
-
+        
         return back()->with("error", "Email or Password not match");
     }
 
@@ -73,6 +73,7 @@ class AuthController extends Controller
     }
 
     public function loginLecturer(Request $request) : RedirectResponse {
+        dd($request);
         $credentials = $request->validate([
             "email" => "required|email:dns|string",
             "password" => "required|string"
@@ -88,12 +89,16 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request) : RedirectResponse {
+        $guard = (Auth::guard("admin") ? "admin" : Auth::guard("student")) ? "student" : "lecturer";
+
         Auth::logout();
  
         $request->session()->invalidate();
  
         $request->session()->regenerateToken();
 
-        return to_route("login.get");
+        if ($guard === 'admin') return to_route("login.get");
+        if ($guard === 'student') return to_route("login.student.get");
+        if ($guard === 'lecturer') return to_route("login.lecturer.get");
     }
 }

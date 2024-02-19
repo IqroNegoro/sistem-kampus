@@ -28,6 +28,8 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(["guest"])->group(function() {
+    //The best practice is u must separate login url 
+
     // Admins
     Route::get("/login", [AuthController::class, "loginView"])->name("login.get");
     Route::post("/login", [AuthController::class, "login"])->name("login.post");
@@ -41,7 +43,7 @@ Route::middleware(["guest"])->group(function() {
     Route::post("/student/login", [AuthController::class, "loginStudent"])->name("login.student.post");
     
     // Lecturers
-    Route::get("/lecturer/login", [AuthController::class, "loginLectureView"])->name("login.lecturer.get");
+    Route::get("/lecturer/login", [AuthController::class, "LoginViewLecturer"])->name("login.lecturer.get");
     Route::post("/lecturer/login", [AuthController::class, "loginLecturer"])->name("login.lecturer.post");
 });
 
@@ -61,10 +63,12 @@ Route::middleware(["auth:admin"])->prefix("admin")->group(function() {
 
 Route::middleware(["auth:student"])->prefix("student")->name("student.")->controller(StudentController::class)->group(function() {
     Route::get("/", "index")->name("index");
+    Route::get("/schedules", "schedules")->name("schedules");
 });
 
 Route::middleware(["auth:lecturer"])->prefix("lecturer")->name("lecturer.")->controller(LecturerController::class)->group(function() {
     Route::get("/", "index")->name("index");
+    Route::get("/schedules", "schedules")->name("schedules");
 });
 
 

@@ -22,9 +22,15 @@
                 </p>
                 <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Day</span>
-                    <input v-model="form.day" type="date"
-                        class="block w-full mt-1 text-sm border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" :class="{'border-red-500 dark:border-red-500': form.errors.day}"
-                        placeholder="Weeb Programming" />
+                    <select v-model="form.day" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                  <option selected value="Monday">Monday</option>
+                  <option value="Tuesday">Tuesday</option>
+                  <option value="Wednesday">Wednesday</option>
+                  <option value="Thursday">Thursday</option>
+                  <option value="Friday">Friday</option>
+                  <option value="Saturday">Saturday</option>
+                  <option value="Sunday">Sunday</option>
+                </select>
                         <p class="text-red-500 font-medium" v-if="form.errors.day"> {{ form.errors.day }} </p>
                 </label>
                 <label class="block text-sm">
@@ -117,7 +123,7 @@ import { useForm } from "@inertiajs/vue3";
 defineEmits(["closeModalAdd"]);
 
 const form = useForm({
-    day: "",
+    day: "Monday",
     time: "",
     study_id: "",
     year_id: "",

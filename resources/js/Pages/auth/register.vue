@@ -9,10 +9,17 @@
               Create account
             </h1>
             <label class="block text-sm">
+              <span class="text-gray-700 dark:text-gray-400">Name</span>
+              <input v-model="form.name" type="text"
+                class="block w-full mt-1 text-sm dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" :class="{'border border-red-500': form.errors.name}"
+                placeholder="Jane Doe" />
+                <p class="text-red-500" v-if="form.errors.name"> {{ form.errors.name }} </p>
+            </label>
+            <label class="block mt-4 text-sm">
               <span class="text-gray-700 dark:text-gray-400">Email</span>
               <input v-model="form.email" type="email"
                 class="block w-full mt-1 text-sm dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" :class="{'border border-red-500': form.errors.email}"
-                placeholder="Jane Doe" />
+                placeholder="jane@gmail.com" />
                 <p class="text-red-500" v-if="form.errors.email"> {{ form.errors.email }} </p>
             </label>
             <label class="block mt-4 text-sm">
@@ -64,6 +71,7 @@ import { Link, useForm } from '@inertiajs/vue3';
 import { Head } from "@inertiajs/vue3";
 
 const form = useForm({
+  name: "",
   email: "",
   password: "",
   confirm: ""
