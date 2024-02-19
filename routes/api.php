@@ -1,14 +1,13 @@
 <?php
 
-use App\Http\Controllers\AcademicYearController;
-use App\Http\Controllers\BuildingController;
-use App\Http\Controllers\ClassesController;
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\FacultyController;
-use App\Http\Controllers\LecturerController;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\StudyController;
-use App\Models\AcademicYear;
+use App\Http\Controllers\Admin\AcademicYearController;
+use App\Http\Controllers\Admin\BuildingController;
+use App\Http\Controllers\Admin\ClassesController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\FacultyController;
+use App\Http\Controllers\Admin\LecturerController;
+use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\Admin\StudyController;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 

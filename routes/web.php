@@ -1,19 +1,19 @@
 <?php
 
-use App\Http\Controllers\AcademicYearController;
-use App\Http\Controllers\AuthController;
-use App\Http\Controllers\BuildingController;
-use App\Http\Controllers\ClassesController;
-use App\Http\Controllers\CourseController;
-use App\Http\Controllers\IndexController;
-use App\Http\Controllers\FacultyController;
-use App\Http\Controllers\LecturerController;
-use App\Http\Controllers\RoomController;
-use App\Http\Controllers\ScheduleController;
-use App\Http\Controllers\StudentController;
-use App\Http\Controllers\StudyController;
-use App\Mail\ActivateAccount;
-use Illuminate\Support\Facades\Mail;
+use App\Http\Controllers\Admin\AcademicYearController;
+use App\Http\Controllers\Admin\AuthController;
+use App\Http\Controllers\Admin\BuildingController;
+use App\Http\Controllers\Admin\ClassesController;
+use App\Http\Controllers\Admin\CourseController;
+use App\Http\Controllers\Admin\IndexController;
+use App\Http\Controllers\Admin\FacultyController;
+use App\Http\Controllers\Admin\LecturerController as AdminLecturerController;
+use App\Http\Controllers\Admin\RoomController;
+use App\Http\Controllers\Admin\ScheduleController;
+use App\Http\Controllers\Admin\StudentController as AdminStudentController;
+use App\Http\Controllers\Admin\StudyController;
+use App\Http\Controllers\Student\StudentController;
+use App\Http\Controllers\Lecturer\LecturerController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -28,24 +28,44 @@ use Illuminate\Support\Facades\Route;
 */
 
 Route::middleware(["guest"])->group(function() {
+    // Admins
     Route::get("/login", [AuthController::class, "loginView"])->name("login.get");
     Route::post("/login", [AuthController::class, "login"])->name("login.post");
+    
+    // Disabled if u want
     Route::get("/register", [AuthController::class, "registerView"])->name("register.get");
     Route::post("/register", [AuthController::class, "register"])->name("register.post");
+    
+    // Students
+    Route::get("/student/login", [AuthController::class, "loginViewStudent"])->name("login.student.get");
+    Route::post("/student/login", [AuthController::class, "loginStudent"])->name("login.student.post");
+    
+    // Lecturers
+    Route::get("/lecturer/login", [AuthController::class, "loginLectureView"])->name("login.lecturer.get");
+    Route::post("/lecturer/login", [AuthController::class, "loginLecturer"])->name("login.lecturer.post");
 });
 
-Route::middleware(["auth:superadmin"])->group(function() {
+Route::middleware(["auth:admin"])->prefix("admin")->group(function() {
     Route::get('/', [IndexController::class, "index"]);
-    Route::resource('/lecturers', LecturerController::class);
+    Route::resource('/lecturers', AdminLecturerController::class);
     Route::resource("/faculties", FacultyController::class);
     Route::resource("/buildings", BuildingController::class);
     Route::resource("/rooms", RoomController::class);
     Route::resource("/years", AcademicYearController::class)->parameter("years", "academic_year");
     Route::resource("/studies", StudyController::class);
     Route::resource("/courses", CourseController::class);
-    Route::resource("/students", StudentController::class);
+    Route::resource("/students", AdminStudentController::class);
     Route::resource("/classes", ClassesController::class)->parameter("classes", "classes");
     Route::resource("/schedules", ScheduleController::class);
-
-    Route::delete("/logout", [AuthController::class, "logout"])->name('logout');
 });
+
+Route::middleware(["auth:student"])->prefix("student")->name("student.")->controller(StudentController::class)->group(function() {
+    Route::get("/", "index")->name("index");
+});
+
+Route::middleware(["auth:lecturer"])->prefix("lecturer")->name("lecturer.")->controller(LecturerController::class)->group(function() {
+    Route::get("/", "index")->name("index");
+});
+
+
+Route::delete("/logout", [AuthController::class, "logout"])->name('logout')->middleware("auth:admin,student,lecturer");

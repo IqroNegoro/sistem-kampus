@@ -2,20 +2,22 @@
 
 namespace App\Models;
 
-use App\Mail\ActivateAccount;
+use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\Concerns\HasUuids;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\BelongsTo;
 use Illuminate\Database\Eloquent\SoftDeletes;
-use Illuminate\Support\Facades\Mail;
 
-class Student extends Model
+class Student extends Authenticatable
 {
-    use HasFactory, HasUuids, SoftDeletes;
+    use HasFactory, HasUuids, Notifiable, SoftDeletes;
 
     protected $guarded = ["id"];
+
+    protected $hidden = ["password"];
 
     public function study() : BelongsTo {
         return $this->belongsTo(Study::class);
@@ -41,7 +43,6 @@ class Student extends Model
 
         static::created(function (Student $student) {
             $student->class()->increment("total");
-            Mail::to($student->email)->send(new ActivateAccount($student));
         });
 
         static::deleted(function (Student $student) {

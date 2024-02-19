@@ -4,9 +4,9 @@
         <div class="w-96 h-full max-w-4xl mx-auto overflow-hidden bg-white rounded-lg shadow-xl dark:bg-gray-800">
             <div class="flex flex-col overflow-y-auto md:flex-row">
                 <div class="flex items-center justify-center p-6 sm:p-12 w-full">
-                    <form @submit.prevent="form.post(route('login.post'))" class="w-full">
+                    <form @submit.prevent="form.post(route('login.lecturer.post'))" class="w-full">
                         <h1 class="mb-4 text-xl font-semibold text-gray-700 dark:text-gray-200">
-                            Login
+                            Lecturers Portal
                         </h1>
                         <label class="block text-sm">
                             <span class="text-gray-700 dark:text-gray-400">Email</span>
@@ -67,12 +67,6 @@
                                 Forgot your password?
                             </a>
                         </p> -->
-                        <p class="mt-1">
-                            <Link class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
-                                :href="route('register.get')">
-                                Create account
-                            </Link>
-                        </p>
                     </form>
                 </div>
             </div>
@@ -80,7 +74,7 @@
     </div>
 </template>
 <script setup>
-import { Link, useForm } from "@inertiajs/vue3";
+import { useForm } from "@inertiajs/vue3";
 import { Head } from "@inertiajs/vue3";
 
 const form = useForm({

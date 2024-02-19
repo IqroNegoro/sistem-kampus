@@ -2,7 +2,6 @@
 
 namespace App\Mail;
 
-use App\Models\Student;
 use Illuminate\Mail\Mailables\Address;
 use Illuminate\Bus\Queueable;
 use Illuminate\Contracts\Queue\ShouldQueue;
@@ -10,7 +9,6 @@ use Illuminate\Mail\Mailable;
 use Illuminate\Mail\Mailables\Content;
 use Illuminate\Mail\Mailables\Envelope;
 use Illuminate\Queue\SerializesModels;
-use Illuminate\Support\Facades\Auth;
 
 class ActivateAccount extends Mailable
 {
@@ -19,7 +17,7 @@ class ActivateAccount extends Mailable
     /**
      * Create a new message instance.
      */
-    public function __construct(public Student $user)
+    public function __construct(public $user)
     {
     }
 
@@ -30,7 +28,7 @@ class ActivateAccount extends Mailable
     {
         return new Envelope(
             from: new Address("siakad@noreply.com", "Siakad"),
-            subject: 'Activate Account Siakad',
+            subject: 'Account Siakad',
             // to: $this->name
         );
     }
