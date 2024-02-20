@@ -35,7 +35,7 @@ class StudyController extends Controller
         $data = $request->validate([
             "study_code" => "required|string|unique:studies",
             "name" => "required|string",
-            "semester" => "required|numeric",
+            "degree" => "required|string",
             "faculty_id" => "required|exists:faculties,id",
             "lecturer_id" => "required|exists:lecturers,id"
         ]);
@@ -67,7 +67,7 @@ class StudyController extends Controller
         $data = $request->validate([
             "study_code" => "required|string" . ($request->study_code !== $study->study_code ? '|unique:studies' : ''),
             "name" => "required|string",
-            "semester" => "required|numeric",
+            "degree" => "required|string",
             "faculty_id" => "required|exists:faculties,id",
             "lecturer_id" => "required|exists:lecturers,id"
         ]);

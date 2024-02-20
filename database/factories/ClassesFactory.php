@@ -3,12 +3,11 @@
 namespace Database\Factories;
 
 use Illuminate\Database\Eloquent\Factories\Factory;
-use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Faculties>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Classes>
  */
-class FacultyFactory extends Factory
+class ClassesFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -18,8 +17,9 @@ class FacultyFactory extends Factory
     public function definition(): array
     {
         return [
-            "id" => Str::uuid(),
-            "name" => "Software Engineer"
+            "name" => "RPL1A",
+            "generation" => "2024",
+            "total" => "30",
         ];
     }
 }

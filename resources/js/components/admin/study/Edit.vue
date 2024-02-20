@@ -31,11 +31,11 @@
                         <p class="text-red-500 font-medium" v-if="form.errors.study_code"> {{ form.errors.study_code }} </p>
                 </label>
                 <label class="block text-sm">
-                    <span class="text-gray-700 dark:text-gray-400">Semester</span>
-                    <input v-model="form.semester" type="number"
-                        class="block w-full mt-1 text-sm border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" :class="{'border-red-500 dark:border-red-500': form.errors.semester}"
-                        placeholder="1" />
-                        <p class="text-red-500 font-medium" v-if="form.errors.semester"> {{ form.errors.semester }} </p>
+                    <span class="text-gray-700 dark:text-gray-400">Degree</span>
+                    <input v-model="form.degree" type="text"
+                        class="block w-full mt-1 text-sm border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" :class="{'border-red-500 dark:border-red-500': form.errors.degree}"
+                        placeholder="D4 / S1" />
+                        <p class="text-red-500 font-medium" v-if="form.errors.degree"> {{ form.errors.degree }} </p>
                 </label>
                 <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Faculty</span>
@@ -84,7 +84,7 @@ const emit = defineEmits(["closeModalEdit"]);
 const form = useForm({
     name: study.name,
     study_code: study.study_code,
-    semester: study.semester,
+    degree: study.degree,
     faculty_id: study.faculty_id,
     lecturer_id: study.lecturer_id,
 });

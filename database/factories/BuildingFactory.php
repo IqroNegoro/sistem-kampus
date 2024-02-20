@@ -6,9 +6,9 @@ use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
 /**
- * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Faculties>
+ * @extends \Illuminate\Database\Eloquent\Factories\Factory<\App\Models\Building>
  */
-class FacultyFactory extends Factory
+class BuildingFactory extends Factory
 {
     /**
      * Define the model's default state.
@@ -19,7 +19,7 @@ class FacultyFactory extends Factory
     {
         return [
             "id" => Str::uuid(),
-            "name" => "Software Engineer"
+            "name" => "Student Center"
         ];
     }
 }

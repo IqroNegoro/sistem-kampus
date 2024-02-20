@@ -34,7 +34,7 @@ class AcademicYearController extends Controller
     {
         $data = $request->validate([
             "year" => "required|numeric",
-            "semester" => "required|numeric",
+            "semester" => "required|string",
             "status" => "nullable|boolean"
         ]);
 
@@ -64,7 +64,7 @@ class AcademicYearController extends Controller
     {
         $data = $request->validate([
             "year" => "required|numeric",
-            "semester" => "required|numeric",
+            "semester" => "required|string",
             "status" => "nullable|boolean"
         ]);
 
@@ -80,6 +80,6 @@ class AcademicYearController extends Controller
     }
     
     public function get() {
-        return AcademicYear::all(["id", "year"]);
+        return AcademicYear::all(["id", "year", "semester"]);
     }
 }

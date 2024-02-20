@@ -7,7 +7,7 @@
             {{ study.study_code }}
         </td>
         <td class="px-4 py-3 text-sm">
-            {{ study.semester }}
+            {{ study.degree }}
         </td>
         <td class="px-4 py-3 text-sm">
             {{ study.faculty?.name }}

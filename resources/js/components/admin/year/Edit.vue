@@ -26,10 +26,10 @@
                 </label>
                 <label class="block text-sm">
                     <span class="text-gray-700 dark:text-gray-400">Semester</span>
-                    <input v-model="form.semester"
-                    type="number"
-                        class="block w-full mt-1 text-sm border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" :class="{'border-red-500 dark:border-red-500': form.errors.semester}"
-                        placeholder="1" />
+                    <select v-model="form.semester" class="block w-full mt-1 text-sm dark:text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray">
+                        <option value="odd">Odd</option>
+                        <option value="even">Even</option>
+                    </select>
                         <p class="text-red-500 font-medium" v-if="form.errors.semester"> {{ form.errors.semester }} </p>
                 </label>
                 <label class="block text-sm">
@@ -82,7 +82,7 @@ const emit = defineEmits(["closeModalEdit"]);
 
 const form = useForm({
     year: year.year,
-    semester: year.semester,
+    semester: year.semester || "odd",
     status: year.status
 });
 </script>

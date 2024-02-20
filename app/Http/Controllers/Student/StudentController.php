@@ -20,7 +20,7 @@ class StudentController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function schedule()
+    public function schedules()
     {
         $schedules = Schedule::search()->with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(10);
         return inertia("student/schedule", [

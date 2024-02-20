@@ -27,6 +27,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() {
+    return redirect("login.get");
+})->middleware("auth");
+
 Route::middleware(["guest"])->group(function() {
     //The best practice is u must separate login url 
 
@@ -48,7 +52,6 @@ Route::middleware(["guest"])->group(function() {
 });
 
 Route::middleware(["auth:admin"])->prefix("admin")->group(function() {
-    Route::get('/', [IndexController::class, "index"]);
     Route::resource('/lecturers', AdminLecturerController::class);
     Route::resource("/faculties", FacultyController::class);
     Route::resource("/buildings", BuildingController::class);

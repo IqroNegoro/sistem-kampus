@@ -15,7 +15,7 @@ return new class extends Migration
             $table->uuid('id')->primary();
             $table->string('study_code');
             $table->string('name');
-            $table->integer('semester');
+            $table->string('degree');
             
             $table->uuid("faculty_id")->nullable();
             $table->uuid("lecturer_id")->nullable()->references("id")->on("lecturers")->onDelete("cascade");

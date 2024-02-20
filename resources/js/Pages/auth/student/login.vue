@@ -28,6 +28,18 @@
                           <p v-else>Log In</p>
                         </button>
                         <hr class="my-8" />
+                        <p class="mt-1">
+                            <Link class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                                :href="route('login.lecturer.get')">
+                                Login Lecturer
+                            </Link>
+                        </p>
+                          <p class="mt-1">
+                            <Link class="text-sm font-medium text-purple-600 dark:text-purple-400 hover:underline"
+                                :href="route('login.get')">
+                                Login Admin
+                            </Link>
+                        </p>
                     </form>
                 </div>
             </div>
@@ -35,8 +47,7 @@
     </div>
 </template>
 <script setup>
-import { useForm } from "@inertiajs/vue3";
-import { Head } from "@inertiajs/vue3";
+import { useForm, Head, Link } from "@inertiajs/vue3";
 
 const form = useForm({
   email: "",

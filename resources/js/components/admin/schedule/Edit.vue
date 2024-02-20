@@ -44,7 +44,7 @@
                     <select v-model="form.year_id"
                         class="block w-full mt-1 text-sm dark border text-gray-300 dark:border-gray-600 dark:bg-gray-700 form-select focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:focus:shadow-outline-gray" :class="{'border-red-500 dark:border-red-500': form.errors.year_id}">
                         <option value="">Select</option>
-                        <option v-for="year in years" :key="year.id" :value="year.id"> {{ year.year }}
+                        <option v-for="year in years" :key="year.id" :value="year.id"> {{ year.year }} {{ year.semester }}
                         </option>
                     </select>
                         <p class="text-red-500 font-medium" v-if="form.errors.year_id"> {{ form.errors.year_id }} </p>
