@@ -9,14 +9,21 @@
             </div>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/" :class="{'dark:text-gray-200': $page.url == '/'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('lecturer.index')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('lecturer.index')" :class="{'dark:text-gray-200': route().current('lecturer.index')}">
                 <i class="bx bxs-dashboard"></i>
                 <span class="ml-4">Dashboard</span>
               </Link>
             </li>
           </ul>
           <ul>
+            <li class="relative px-6 py-3">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('lecturer.classes')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('lecturer.classes')" :class="{'dark:text-gray-200': route().current('lecturer.classes')}">
+                <i class="bx bxs-group"></i>
+                <span class="ml-4">Class</span>
+              </Link>
+            </li>
             <li class="relative px-6 py-3">
               <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('lecturer.schedules')"></span> 
               <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('lecturer.schedules')" :class="{'dark:text-gray-200': route().current('lecturer.schedules')}">
@@ -25,7 +32,7 @@
               </Link>
             </li>
             <li class="relative px-6 py-3">
-              <button class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="router.delete('logout')">
+              <button class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" @click="router.delete(route('logout'))">
                 <i class='bx bx-log-out'></i>
                 <span class="ml-4">Log Out</span>
               </button>

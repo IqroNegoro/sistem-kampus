@@ -9,8 +9,8 @@
             </div>
           <ul class="mt-6">
             <li class="relative px-6 py-3">
-              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="$page.url == '/'"></span> 
-              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" href="/" :class="{'dark:text-gray-200': $page.url == '/'}">
+              <span class="absolute inset-y-0 left-0 w-1 bg-purple-600 rounded-tr-lg rounded-br-lg" aria-hidden="true" v-if="route().current('student.index')"></span> 
+              <Link class="inline-flex items-center w-full text-sm font-semibold transition-colors duration-150 hover:text-gray-800 dark:hover:text-gray-200" :href="route('student.index')" :class="{'dark:text-gray-200': route().current('student.index')}">
                 <i class="bx bxs-dashboard"></i>
                 <span class="ml-4">Dashboard</span>
               </Link>

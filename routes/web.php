@@ -71,6 +71,7 @@ Route::middleware(["auth:student"])->prefix("student")->name("student.")->contro
 
 Route::middleware(["auth:lecturer"])->prefix("lecturer")->name("lecturer.")->controller(LecturerController::class)->group(function() {
     Route::get("/", "index")->name("index");
+    Route::get("/classes", "classes")->name("classes");
     Route::get("/schedules", "schedules")->name("schedules");
 });
 

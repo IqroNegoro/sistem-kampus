@@ -18,6 +18,8 @@ class Lecturer extends Authenticatable
 
     protected $guarded = ["id"];
 
+    protected $with = ["faculty"];
+
     protected $hidden = ["password"];
 
     public function faculty() : BelongsTo {
@@ -26,6 +28,10 @@ class Lecturer extends Authenticatable
 
     public function courses() : HasMany {
         return $this->hasMany(Course::class);
+    }
+
+    public function class() : HasMany {
+        return $this->hasMany(Classes::class);
     }
 
     public function scopeSearch(Builder $query) : void {

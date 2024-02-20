@@ -17,6 +17,8 @@ class Student extends Authenticatable
 
     protected $guarded = ["id"];
 
+    protected $with = ["study", "class.lecturer"];
+
     protected $hidden = ["password"];
 
     public function study() : BelongsTo {
