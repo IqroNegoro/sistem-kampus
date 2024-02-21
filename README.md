@@ -5,9 +5,18 @@ Learn inertia by build academic system with Vue JS
 - CRUD Lecturers, Students, Faculties, Building, Room, Academic Year, Program Study, Schedule, Courses, Class
 - Multi Auth Student, Lceturer, Admin
 
-# Admin Account
+# Account
+### Admin Account
 - Email : superadmin@gmail.com
 - Password : admin
+
+### Lecturer Account
+- Email : iqronegoro0@gmail.com
+- Password : iqro
+
+### Student Account
+- Email : iqronegoro0@gmail.com
+- Password : iqro
 
 # How To Install
 ```
@@ -28,6 +37,5 @@ DB_DATABASE=yourdb
 DB_USERNAME=root
 DB_PASSWORD=
 
-2. php artisan migrate:fresh
-3. php artisan db:seed
+2. php artisan migrate:refresh --seed
 ```
