@@ -22,7 +22,7 @@ class StudentController extends Controller
      */
     public function schedules()
     {
-        $schedules = Schedule::search()->with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(10);
+        $schedules = Schedule::search()->with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(request("rows") || 10);
         return inertia("student/schedule", [
             "schedules" => $schedules
         ]);

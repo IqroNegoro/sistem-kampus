@@ -13,7 +13,7 @@ class RoomController extends Controller
      */
     public function index()
     {
-        $rooms = Room::search()->with(["building"])->orderBy("created_at")->paginate(10);
+        $rooms = Room::search()->with(["building"])->orderBy("created_at")->paginate(request("rows") || 10);
         return inertia("admin/room/index", [
             "rooms" => $rooms
         ]);

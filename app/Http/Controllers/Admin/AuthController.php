@@ -42,9 +42,11 @@ class AuthController extends Controller
             "confirm" => "required|same:password"
         ]);
 
-        User::create($data);
+        if (User::create($data)) {
+            return to_route("login.get")->with("success", "Register success");
+        };
 
-        return to_route("login.get")->with("success", "Register success");
+        return to_route("register.get")->with("error", "Something wrong, try again");
     }
 
     public function loginViewStudent() : Response {

@@ -16,7 +16,7 @@ class LecturerController extends Controller
      */
     public function index()
     {
-        $schedules = Schedule::where("lecturer_id", Auth::user()->id)->search()->with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(10);
+        $schedules = Schedule::where("lecturer_id", Auth::user()->id)->search()->with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(request("rows") || 10);
         return inertia("lecturer/index", [
             "schedules" => $schedules
         ]);
@@ -27,7 +27,7 @@ class LecturerController extends Controller
      */
     public function schedules()
     {
-        $schedules = Schedule::where("lecturer_id", Auth::user()->id)->search()->with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(10);
+        $schedules = Schedule::where("lecturer_id", Auth::user()->id)->search()->with(["study", "academicYear", "classes", "course", "lecturer", "room.building"])->orderBy("created_at")->paginate(request("rows") || 10);
         return inertia("lecturer/schedule", [
             "schedules" => $schedules
         ]);
@@ -38,7 +38,7 @@ class LecturerController extends Controller
      */
     public function classes()
     {
-        $class = Classes::where('lecturer_id', Auth::user()->id)->search()->with(["study", "lecturer"])->orderBy("created_at")->paginate(10);
+        $class = Classes::where('lecturer_id', Auth::user()->id)->search()->with(["study", "lecturer"])->orderBy("created_at")->paginate(request("rows") || 10);
         return inertia("lecturer/classes", [
             "classes" => $class
         ]);
