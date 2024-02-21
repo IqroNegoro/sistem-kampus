@@ -13,7 +13,7 @@ class ClassesController extends Controller
      */
     public function index()
     {
-        $class = Classes::search()->with(["study", "lecturer"])->orderBy("created_at")->paginate(request("rows") || 10);
+        $class = Classes::search()->with(["study", "lecturer"])->orderBy("created_at")->paginate(request("rows") ?? 10);
         return inertia("admin/classes/index", [
             "classes" => $class
         ]);

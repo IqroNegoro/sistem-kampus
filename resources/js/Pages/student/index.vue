@@ -7,6 +7,7 @@
         <div class="w-full mb-8 rounded-lg shadow-xs">
             <div class="w-full rounded-sm shadow-xs bg-gray-800 p-4">
                 <p class="text-white font-medium text-xl">Biodata</p>
+                <img :src="$page.props.auth.photo" :alt="$page.props.auth.name" class="rounded-full w-48 h-48 aspect-square object-center object-cover mx-auto">
                 <div class="text-white font-medium my-2 flex flex-col gap-1">
                     <table class="w-full whitespace-no-wrap">
                         <tbody>

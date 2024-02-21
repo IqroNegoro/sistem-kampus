@@ -16,7 +16,7 @@ return new class extends Migration
             $table->string('code')->unique();
             $table->string('name');
             $table->integer('sks');
-            $table->string('semester');
+            $table->enum('semester', ["even", "odd"]);
             
             $table->uuid('study_id')->nullable()->references("id")->on("studies")->onDelete("cascade");
 

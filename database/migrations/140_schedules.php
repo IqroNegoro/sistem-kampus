@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('schedules', function (Blueprint $table) {
             $table->uuid('id')->primary();
-            $table->string('day');
+            $table->enum('day', ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]);
             $table->time('time');
             
             $table->uuid('study_id')->nullable()->references("id")->on("studies")->onDelete("cascade");

@@ -13,7 +13,7 @@ class StudyController extends Controller
      */
     public function index()
     {
-        $studies = Study::search()->with(["faculty", "lecturer"])->orderBy("created_at")->paginate(request("rows") || 10);
+        $studies = Study::search()->with(["faculty", "lecturer"])->orderBy("created_at")->paginate(request("rows") ?? 10);
         return inertia("admin/study/index", [
             "studies" => $studies
         ]);

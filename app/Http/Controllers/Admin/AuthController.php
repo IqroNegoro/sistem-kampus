@@ -88,7 +88,9 @@ class AuthController extends Controller
     }
 
     public function logout(Request $request) : RedirectResponse {
-        $guard = (Auth::guard("admin")->check() ? "admin" : Auth::guard("student")->check()) ? "student" : "lecturer";
+        if (Auth::guard("admin")->check()) $guard = "admin";
+        if (Auth::guard("student")->check()) $guard = "student";
+        if (Auth::guard("lecturer")->check()) $guard = "lecturer";
 
         Auth::logout();
  

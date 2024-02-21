@@ -16,7 +16,7 @@
                 </p>
                 <label class="block text-sm">
                     <img v-if="form.photo" :src="render(form.photo)" alt="" class="mx-auto w-32 h-32 rounded-full object-center object-cover">
-                    <img v-else-if="lecturer.photo" :src="lecturer.photo" alt="" class="mx-auto w-32 h-32 rounded-full object-center object-cover">
+                    <img v-else-if="lecturer.photo" :src="`/` + lecturer.photo" alt="" class="mx-auto w-32 h-32 rounded-full object-center object-cover">
                     <div v-else class="mx-auto w-32 h-32 rounded-full bg-black/50"></div>
                     <input @change="handleFile"
                         class="hidden w-full mt-1 text-sm border dark:border-gray-600 dark:bg-gray-700 focus:border-purple-400 focus:outline-none focus:shadow-outline-purple dark:text-gray-300 dark:focus:shadow-outline-gray form-input" :class="{'border-red-500 dark:border-red-500': form.errors.nidn}"
