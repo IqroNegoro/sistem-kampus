@@ -52,16 +52,19 @@ Route::middleware(["guest"])->group(function() {
 });
 
 Route::middleware(["auth:admin"])->prefix("admin")->group(function() {
-    Route::resource('/lecturers', AdminLecturerController::class);
     Route::resource("/faculties", FacultyController::class);
     Route::resource("/buildings", BuildingController::class);
     Route::resource("/rooms", RoomController::class);
     Route::resource("/years", AcademicYearController::class)->parameter("years", "academic_year");
     Route::resource("/studies", StudyController::class);
     Route::resource("/courses", CourseController::class);
-    Route::resource("/students", AdminStudentController::class);
     Route::resource("/classes", ClassesController::class)->parameter("classes", "classes");
     Route::resource("/schedules", ScheduleController::class);
+    
+    Route::middleware(["role:superadmin"])->group(function() {
+        Route::resource('/lecturers', AdminLecturerController::class)->middleware("role:superadmin");
+        Route::resource("/students", AdminStudentController::class)->middleware("role:superadmin");
+    });
 });
 
 Route::middleware(["auth:student"])->prefix("student")->name("student.")->controller(StudentController::class)->group(function() {

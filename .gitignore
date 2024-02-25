@@ -18,5 +18,5 @@ yarn-error.log
 /.idea
 /.vscode
 windmill-dashboard
-# public/images
-# storage/app/public
+public/images
+storage/app/public

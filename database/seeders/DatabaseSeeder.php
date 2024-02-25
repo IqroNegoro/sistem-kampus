@@ -18,8 +18,7 @@ class DatabaseSeeder extends Seeder
         \App\Models\User::create([
             'name' => 'Super Admin',
             'email' => 'superadmin@gmail.com',
-            "password" => Hash::make("admin"),
-            "roles" => "superadmin"
+            "password" => Hash::make("admin")
         ]);
 
         \App\Models\AcademicYear::insert([
@@ -79,7 +78,7 @@ class DatabaseSeeder extends Seeder
                 "email" => "iqronegoro0@gmail.com",
                 "password" => Hash::make("iqro"),
                 "gender" => "Female",
-                "photo" => "images/Q1fWOIAmKXSh7gUSN168vqnDPlMMyf84LgkbhdNJ.jpg"
+                "photo" => "images/iqro.jpg"
             ],
             [
                 "id" => "9b613ed1-268b-4b14-b94a-687873f587b5",
@@ -93,7 +92,7 @@ class DatabaseSeeder extends Seeder
                 "email" => "irene@gmail.com",
                 "password" => Hash::make("irene"),
                 "gender" => "Female",
-                "photo" => "images/dnucqIiqOpPJGIMrHdQK6EsbDvGeFYNzUYkStlVw.jpg"
+                "photo" => "images/irene.jpg"
             ],
             [
                 "id" => "6e5746f6-9659-48e9-840b-e431476c66f5",
@@ -107,7 +106,7 @@ class DatabaseSeeder extends Seeder
                 "email" => "ellenbaker@gmail.com",
                 "password" => Hash::make("ellen"),
                 "gender" => "Female",
-                "photo" => "images/rm7DZ6j5hjQkBdVLnfYdQU52w5MmD3QGrcbT43jB.jpg"
+                "photo" => "images/ellen.jpg"
             ]
         ]);
 
@@ -169,7 +168,7 @@ class DatabaseSeeder extends Seeder
                 "email" => "iqronegoro0@gmail.com",
                 "password" => Hash::make("iqro"),
                 "gender" => "Male",
-                "photo" => "images/Q1fWOIAmKXSh7gUSN168vqnDPlMMyf84LgkbhdNJ.jpg",
+                "photo" => "images/iqro.jpg",
                 "study_id" => "9b6102ba-0eb4-4277-94c3-8dd81ecc59a5",
                 "class_id" => "9b6103dc-3575-4795-a782-05ad1849dc79"
             ],
@@ -184,7 +183,7 @@ class DatabaseSeeder extends Seeder
                 "email" => "baked@gmail.com",
                 "password" => Hash::make("baked"),
                 "gender" => "Female",
-                "photo" => "images/rm7DZ6j5hjQkBdVLnfYdQU52w5MmD3QGrcbT43jB.jpg",
+                "photo" => "images/ellen.jpg",
                 "study_id" => "a701403d-40af-4d52-830d-d4064349a189",
                 "class_id" => "cf75058c-1695-4c0d-b652-eedeaa425f25"
             ]

@@ -3,7 +3,7 @@
 Learn inertia by build academic system with Vue JS
 
 - CRUD Lecturers, Students, Faculties, Building, Room, Academic Year, Program Study, Schedule, Courses, Class
-- Multi Auth Student, Lceturer, Admin
+- Multi Auth Student, Lecturer, Admin, Roles & Permission
 
 # Account
 ### Admin Account
