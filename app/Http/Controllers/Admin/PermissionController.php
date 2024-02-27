@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Permission;
 use Illuminate\Http\Request;
+use Spatie\Permission\Models\Role;
 
 class PermissionController extends Controller
 {
@@ -61,5 +63,9 @@ class PermissionController extends Controller
     public function destroy(Permission $permission)
     {
         //
+    }
+
+    public function get() {
+        return Permission::all(["id", "name"]);
     }
 }

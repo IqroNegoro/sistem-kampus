@@ -1,9 +1,11 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\Admin;
 
+use App\Http\Controllers\Controller;
 use Spatie\Permission\Models\Role;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class RoleController extends Controller
 {
@@ -12,7 +14,10 @@ class RoleController extends Controller
      */
     public function index()
     {
-        return inertia("admin/role/index");
+        $roles = Role::whereNotIn("name", Auth::user()->getRoleNames())->with("permissions")->get();
+        return inertia("admin/role/index",[
+            "roles" => $roles
+        ]);
     }
 
     /**
@@ -52,7 +57,10 @@ class RoleController extends Controller
      */
     public function update(Request $request, Role $role)
     {
-        //
+        $request->validate([
+            "permissions" => "required|array"
+        ]);
+        $role->syncPermissions($request->permissions);
     }
 
     /**
@@ -61,5 +69,9 @@ class RoleController extends Controller
     public function destroy(Role $role)
     {
         //
+    }
+
+    public function get() {
+        return Role::all();
     }
 }

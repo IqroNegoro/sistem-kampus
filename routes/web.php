@@ -14,6 +14,8 @@ use App\Http\Controllers\Admin\StudentController as AdminStudentController;
 use App\Http\Controllers\Admin\StudyController;
 use App\Http\Controllers\Student\StudentController;
 use App\Http\Controllers\Lecturer\LecturerController;
+use App\Http\Controllers\Admin\PermissionController;
+use App\Http\Controllers\Admin\RoleController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -26,10 +28,6 @@ use Illuminate\Support\Facades\Route;
 | be assigned to the "web" middleware group. Make something great!
 |
 */
-
-Route::get('/', function() {
-    return redirect("login.get");
-})->middleware("auth");
 
 Route::middleware(["guest"])->group(function() {
     //The best practice is u must separate login url 
@@ -52,6 +50,8 @@ Route::middleware(["guest"])->group(function() {
 });
 
 Route::middleware(["auth:admin"])->prefix("admin")->group(function() {
+    Route::get("/", [IndexController::class, "index"])->name("index");
+
     Route::resource("/faculties", FacultyController::class);
     Route::resource("/buildings", BuildingController::class);
     Route::resource("/rooms", RoomController::class);
@@ -62,8 +62,10 @@ Route::middleware(["auth:admin"])->prefix("admin")->group(function() {
     Route::resource("/schedules", ScheduleController::class);
     
     Route::middleware(["role:superadmin"])->group(function() {
-        Route::resource('/lecturers', AdminLecturerController::class)->middleware("role:superadmin");
-        Route::resource("/students", AdminStudentController::class)->middleware("role:superadmin");
+        Route::resource('/lecturers', AdminLecturerController::class);
+        Route::resource("/students", AdminStudentController::class);
+        Route::resource("/roles", RoleController::class);
+        Route::resource("/permissions", PermissionController::class);
     });
 });
 

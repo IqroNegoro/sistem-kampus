@@ -21,14 +21,14 @@ class AuthController extends Controller
 
     public function login(Request $request) : RedirectResponse {
         $credentials = $request->validate([
-            "email" => "required|email:dns|string",
+            "email" => "required|email|string",
             "password" => "required|string"
         ]);
 
         if (Auth::attempt($credentials)) {
             $request->session()->regenerate();
             
-            return to_route("lecturers.index");
+            return to_route("index");
         }
 
         return back()->with("error", "Email or Password not match");
@@ -37,7 +37,7 @@ class AuthController extends Controller
     public function register(Request $request) : RedirectResponse {
         $data = $request->validate([
             "name" => "required|string",
-            "email" => "required|email:dns|string",
+            "email" => "required|email|string",
             "password" => "required|string",
             "confirm" => "required|same:password"
         ]);

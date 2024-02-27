@@ -13,6 +13,7 @@ class BuildingController extends Controller
      */
     public function index()
     {
+        $this->middleware("permission:read-building");
         $buildings = Building::search()->orderBy("created_at")->paginate(request("rows") ?? 10);
         return inertia("admin/building/index", [
             "buildings" => $buildings
