@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class StudyController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Study::class);
+    }
     /**
      * Display a listing of the resource.
      */

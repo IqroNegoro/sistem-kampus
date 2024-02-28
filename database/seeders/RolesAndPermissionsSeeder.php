@@ -15,7 +15,7 @@ class RolesAndPermissionsSeeder extends Seeder
      */
     public function run(): void
     {
-        $models = ["year", "building", "class", "course", "faculty", "lecturer", "room", "schedule", "student", "study"];
+        $models = ["year", "building", "class", "course", "faculty", "room", "schedule", "study"];
         $permissions = ["create", "read", "update", "delete"];
         $roles = ["superadmin", "admin"];
 
@@ -31,8 +31,6 @@ class RolesAndPermissionsSeeder extends Seeder
 
         $roleSuperAdmin = Role::create(["name" => "superadmin"]);
         $roleAdmin = Role::create(["name" => "admin"]);
-
-        $roleSuperAdmin->syncPermissions($roleSuperAdmin);
 
         $user = User::firstWhere("email", "superadmin@gmail.com");
         $user->assignRole($roleSuperAdmin);

@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class ScheduleController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(Schedule::class);
+    }
     /**
      * Display a listing of the resource.
      */

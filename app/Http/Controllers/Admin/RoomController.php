@@ -8,6 +8,10 @@ use Illuminate\Http\Request;
 
 class RoomController extends Controller
 {
+    public function __construct()
+    {
+        $this->authorizeResource(Room::class);
+    }
     /**
      * Display a listing of the resource.
      */

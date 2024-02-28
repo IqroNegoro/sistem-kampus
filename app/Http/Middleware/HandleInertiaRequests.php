@@ -43,7 +43,9 @@ class HandleInertiaRequests extends Middleware
                 "error" => $request->session()->get("error") ?? null,
                 "success" => $request->session()->get("success") ?? null,
             ],
-            "auth" => Auth::check() ? Auth::user() : ""
+            "auth" => Auth::check() ? Auth::user() : "",
+            "allRoles" => Auth::check() ? $request->user()->getRoleNames() : "",
+            "can" => Auth::check() ? $request->user()->getAllPermissions()->pluck(["name"]) : ""
         ]);
     }
 }

@@ -58,8 +58,9 @@ class RoleController extends Controller
     public function update(Request $request, Role $role)
     {
         $request->validate([
-            "permissions" => "required|array"
+            "permissions" => "array"
         ]);
+
         $role->syncPermissions($request->permissions);
     }
 

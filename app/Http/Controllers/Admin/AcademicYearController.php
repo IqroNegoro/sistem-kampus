@@ -8,6 +8,9 @@ use Illuminate\Http\Request;
 
 class AcademicYearController extends Controller
 {
+    public function __construct() {
+        $this->authorizeResource(AcademicYear::class);
+    }
     /**
      * Display a listing of the resource.
      */

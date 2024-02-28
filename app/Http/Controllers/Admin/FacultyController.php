@@ -8,6 +8,11 @@ use Illuminate\Http\Request;
 
 class FacultyController extends Controller
 {
+    public function __construct() 
+    {
+        $this->authorizeResource(Faculty::class);
+    }
+
     /**
      * Display a listing of the resource.
      */
@@ -76,6 +81,7 @@ class FacultyController extends Controller
     }
 
     public function get() {
+        $this->authorize("viewAny", Faculty::class);
         return Faculty::all(["id", "name"]);
     }
 }

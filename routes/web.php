@@ -29,8 +29,12 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('/', function() {
+    return to_route("login.get");
+})->middleware("auth");
+
 Route::middleware(["guest"])->group(function() {
-    //The best practice is u must separate login url 
+    // separate login url if want
 
     // Admins
     Route::get("/login", [AuthController::class, "loginView"])->name("login.get");
@@ -51,6 +55,17 @@ Route::middleware(["guest"])->group(function() {
 
 Route::middleware(["auth:admin"])->prefix("admin")->group(function() {
     Route::get("/", [IndexController::class, "index"])->name("index");
+    
+    Route::get("/faculties/get", [FacultyController::class, "get"])->name("faculties.get");
+    Route::get("/buildings/get", [BuildingController::class, "get"])->name("buildings.get");
+    Route::get("/lecturers/get", [AdminLecturerController::class, "get"])->name("lecturers.get");
+    Route::get("/studies/get", [StudyController::class, "get"])->name("studies.get");
+    Route::get("/classes/get", [ClassesController::class, "get"])->name("classes.get");
+    Route::get("/rooms/get", [RoomController::class, "get"])->name("rooms.get");
+    Route::get("/courses/get", [CourseController::class, "get"])->name("courses.get");
+    Route::get("/years/get", [AcademicYearController::class, "get"])->name("years.get");
+    Route::get("/roles/get", [RoleController::class, "get"])->name("roles.get");
+    Route::get("/permission/get", [PermissionController::class, "get"])->name("permissions.get");
 
     Route::resource("/faculties", FacultyController::class);
     Route::resource("/buildings", BuildingController::class);
@@ -67,6 +82,7 @@ Route::middleware(["auth:admin"])->prefix("admin")->group(function() {
         Route::resource("/roles", RoleController::class);
         Route::resource("/permissions", PermissionController::class);
     });
+    
 });
 
 Route::middleware(["auth:student"])->prefix("student")->name("student.")->controller(StudentController::class)->group(function() {
@@ -79,6 +95,5 @@ Route::middleware(["auth:lecturer"])->prefix("lecturer")->name("lecturer.")->con
     Route::get("/classes", "classes")->name("classes");
     Route::get("/schedules", "schedules")->name("schedules");
 });
-
 
 Route::delete("/logout", [AuthController::class, "logout"])->name('logout')->middleware("auth:admin,student,lecturer");
