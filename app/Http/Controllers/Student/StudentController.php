@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use App\Models\Schedule;
 use App\Models\Student;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class StudentController extends Controller
 {
@@ -55,9 +56,29 @@ class StudentController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Student $student)
+    public function updateProfile(Request $request)
     {
-        //
+        $validate = [
+            "birth_place" => "required|string",
+            "birth" => "required|date",
+            "address" => "required|string",
+            "phone" => "required|numeric|regex:/^\d+$/i",
+            "email" => "required|string|email:dns"  . ($request->email !== $request->user()->email ? "|unique:students" : ""),
+        ];
+        
+        if ($request->hasFile("photo")) {
+            $validate["photo"] = "image|max:2024";
+        }
+        
+        $data = $request->validate($validate);
+
+        if ($request->hasFile("photo")) {
+            $file = $request->file("photo")->store("images", "public");
+            
+            $data["photo"] = $file;
+        }
+
+        $request->user()->update($data);
     }
 
     /**

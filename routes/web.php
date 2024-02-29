@@ -87,11 +87,13 @@ Route::middleware(["auth:admin"])->prefix("admin")->group(function() {
 
 Route::middleware(["auth:student"])->prefix("student")->name("student.")->controller(StudentController::class)->group(function() {
     Route::get("/", "index")->name("index");
+    Route::put("/", "updateProfile")->name("update.profile");
     Route::get("/schedules", "schedules")->name("schedules");
 });
 
 Route::middleware(["auth:lecturer"])->prefix("lecturer")->name("lecturer.")->controller(LecturerController::class)->group(function() {
     Route::get("/", "index")->name("index");
+    Route::put("/", "updateProfile")->name("update.profile");
     Route::get("/classes", "classes")->name("classes");
     Route::get("/schedules", "schedules")->name("schedules");
 });

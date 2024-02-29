@@ -83,7 +83,7 @@ class DatabaseSeeder extends Seeder
                 "phone" => "08978405369",
                 "email" => "iqronegoro0@gmail.com",
                 "password" => Hash::make("iqro"),
-                "gender" => "Female",
+                "gender" => "Male",
                 "photo" => "images/iqro.jpg"
             ],
             [

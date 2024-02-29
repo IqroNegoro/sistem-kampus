@@ -43,8 +43,8 @@ class LecturerController extends Controller
             "birth" => "required|date",
             "address" => "required|string",
             "faculty_id" => "required|string|exists:faculties,id",
-            "phone" => "required|numeric",
-            "email" => "required|string|email:dns",
+            "phone" => "required|numeric|regex:/^\d+$/i",
+            "email" => "required|string|email:dns|unique:lecturers",
             "gender" => "required|string",
             "photo" => "required|image|max:2048" // 2mb
         ]);
@@ -91,8 +91,8 @@ class LecturerController extends Controller
             "birth" => "required|date",
             "address" => "required|string",
             "faculty_id" => "required|string|exists:faculties,id",
-            "phone" => "required|numeric",
-            "email" => "required|string|email:dns",
+            "phone" => "required|numeric|regex:/^\d+$/i",
+            "email" => "required|string|email:dns" . ($request->email !== $lecturer->email ? "|unique:lecturers" : ""),
             "gender" => "required|string",
         ];
 

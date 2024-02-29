@@ -44,8 +44,8 @@ class StudentController extends Controller
             "address" => "required|string",
             "study_id" => "required|string|exists:studies,id",
             "class_id" => "required|string|exists:class,id",
-            "phone" => "numeric",
-            "email" => "required|string|email:dns",
+            "phone" => "required|numeric|regex:/^\d+$/i",
+            "email" => "required|string|email:dns|unique:students",
             "gender" => "required|string",
             "photo" => "image|max:2048" // 2mb
         ]);
@@ -93,8 +93,8 @@ class StudentController extends Controller
             "address" => "required|string",
             "study_id" => "required|string|exists:studies,id",
             "class_id" => "required|string|exists:class,id",
-            "phone" => "numeric",
-            "email" => "required|string|email:dns",
+            "phone" => "required|numeric|regex:/^\d+$/i",
+            "email" => "required|string|email:dns"  . ($request->email !== $student->email ? "|unique:students" : ""),
             "gender" => "required|string",
         ];
 

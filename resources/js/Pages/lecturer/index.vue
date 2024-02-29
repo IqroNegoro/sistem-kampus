@@ -58,6 +58,10 @@
                             </tr>
                         </tbody>
                     </table>
+                    <button @click="editInfo = true"
+                        class="w-max ml-auto px-5 py-3 text-sm font-medium leading-5 text-white transition-colors duration-150 bg-purple-600 border border-transparent rounded-lg sm:px-4 sm:py-2 active:bg-purple-600 hover:bg-purple-700 focus:outline-none focus:shadow-outline-purple">
+                        <p>Edit</p>
+                    </button>
                 </div>
             </div>
             <div class="w-full rounded-md shadow-xs">
@@ -65,7 +69,12 @@
             </div>
         </div>
     </div>
+    <Edit v-if="editInfo" @close-modal-edit="editInfo = false" />
 </template>
 <script setup>
+import Edit from "@/components/lecturer/Edit.vue";
+import { ref } from "vue";
 import { Head } from '@inertiajs/vue3';
+
+const editInfo = ref(false);
 </script>

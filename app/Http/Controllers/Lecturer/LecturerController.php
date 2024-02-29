@@ -63,9 +63,29 @@ class LecturerController extends Controller
     /**
      * Update the specified resource in storage.
      */
-    public function update(Request $request, Lecturer $lecturer)
+    public function updateProfile(Request $request)
     {
-        //
+        $validate = [
+            "birth_place" => "required|string",
+            "birth" => "required|date",
+            "address" => "required|string",
+            "phone" => "required|numeric|regex:/^\d+$/i",
+            "email" => "required|string|email:dns"  . ($request->email !== $request->user()->email ? "|unique:lecturers" : ""),
+        ];
+        
+        if ($request->hasFile("photo")) {
+            $validate["photo"] = "image|max:2024";
+        }
+        
+        $data = $request->validate($validate);
+
+        if ($request->hasFile("photo")) {
+            $file = $request->file("photo")->store("images", "public");
+            
+            $data["photo"] = $file;
+        }
+
+        $request->user()->update($data);
     }
 
     /**
