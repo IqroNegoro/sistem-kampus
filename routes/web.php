@@ -80,7 +80,6 @@ Route::middleware(["auth:admin"])->prefix("admin")->group(function() {
         Route::resource('/lecturers', AdminLecturerController::class);
         Route::resource("/students", AdminStudentController::class);
         Route::resource("/roles", RoleController::class);
-        Route::resource("/permissions", PermissionController::class);
     });
     
 });
